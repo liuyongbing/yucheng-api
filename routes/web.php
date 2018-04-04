@@ -14,3 +14,6 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+//学员资料
+Route::resource('students', 'StudentController');
