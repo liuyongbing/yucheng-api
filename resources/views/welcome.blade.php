@@ -5,10 +5,7 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>Laravel</title>
-
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <title>翼教育教学系统V1.0 API</title>
 
         <!-- Styles -->
         <style>
@@ -65,7 +62,158 @@
         </style>
     </head>
     <body>
-    <h1>Yucheng API V1.0.</h1>
+        <h1>Yucheng API V1.0.</h1>
+        <ol>
+            <li>班级
+                <ul>
+                    <li>
+                        <a href="{{ route('grades.index') }}" target="_blank">列表</a>
+                        {{ route('grades.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.create') }}" target="_blank">新增</a>
+                        {{ route('grades.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('grades.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('grades.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>课程
+                <ul>
+                    <li>
+                        <a href="{{ route('courses.index') }}" target="_blank">列表</a>
+                        {{ route('courses.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.create') }}" target="_blank">新增</a>
+                        {{ route('courses.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('courses.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('courses.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>课时
+                <ul>
+                    <li>
+                        <a href="{{ route('teachings.index') }}" target="_blank">列表</a>
+                        {{ route('teachings.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.create') }}" target="_blank">新增</a>
+                        {{ route('teachings.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('teachings.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('teachings.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>分馆
+                <ul>
+                    <li>
+                        <a href="{{ route('users.index') }}" target="_blank">列表</a>
+                        {{ route('users.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.create') }}" target="_blank">新增</a>
+                        {{ route('users.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('users.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('users.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>教练
+                <ul>
+                    <li>
+                        <a href="{{ route('users.index') }}" target="_blank">列表</a>
+                        {{ route('users.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.create') }}" target="_blank">新增</a>
+                        {{ route('users.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('users.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('users.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>登录
+                <ul>
+                    <li>
+                        <a href="{{ route('users.index') }}" target="_blank">列表</a>
+                        {{ route('users.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.create') }}" target="_blank">新增</a>
+                        {{ route('users.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('users.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('users.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('users.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+        </ol>
         <!-- div class="flex-center position-ref full-height">
             @if (Route::has('login'))
                 <div class="top-right links">
