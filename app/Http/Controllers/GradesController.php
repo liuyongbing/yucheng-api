@@ -6,23 +6,23 @@ use App\Repositories\GradesRepository;
 use Illuminate\Http\Request;
 
 /**
- * +--------+-----------+-------------------------+------------------+------------------------------------------------+--------------+
- * | Domain | Method    | URI                     | Name             | Action                                         | Middleware   |
- * +--------+-----------+-------------------------+------------------+------------------------------------------------+--------------+
- * |        | GET|HEAD  | users                   | users.index      | App\Http\Controllers\UsersController@index     | web          |
- * |        | POST      | users                   | users.store      | App\Http\Controllers\UsersController@store     | web          |
- * |        | GET|HEAD  | users/create            | users.create     | App\Http\Controllers\UsersController@create    | web          |
- * |        | GET|HEAD  | users/{user}            | users.show       | App\Http\Controllers\UsersController@show      | web          |
- * |        | PUT|PATCH | users/{user}            | users.update     | App\Http\Controllers\UsersController@update    | web          |
- * |        | DELETE    | users/{user}            | users.destroy    | App\Http\Controllers\UsersController@destroy   | web          |
- * |        | GET|HEAD  | users/{user}/edit       | users.edit       | App\Http\Controllers\UsersController@edit      | web          |
- * +--------+-----------+-------------------------+------------------+------------------------------------------------+--------------+
+ * +-----------+-------------------+---------------+-------------------------+
+ * | Method    | URI               | Name          | Action                  |
+ * +-----------+-------------------+---------------+-------------------------+
+ * | GET|HEAD  | users             | users.index   | UsersController@index   |
+ * | POST      | users             | users.store   | UsersController@store   |
+ * | GET|HEAD  | users/create      | users.create  | UsersController@create  |
+ * | GET|HEAD  | users/{user}      | users.show    | UsersController@show    |
+ * | PUT|PATCH | users/{user}      | users.update  | UsersController@update  |
+ * | DELETE    | users/{user}      | users.destroy | UsersController@destroy |
+ * | GET|HEAD  | users/{user}/edit | users.edit    | UsersController@edit    |
+ * +-----------+-------------------+---------------+-------------------------+
  */
 
 class GradesController extends Controller
 {
     /**
-     * 班级列表
+     * 列表
      * 
      * @param Request $request
      * @param GradesRepository $repository
@@ -35,7 +35,7 @@ class GradesController extends Controller
     }
     
     /**
-     * 班级详情
+     * 详情
      * 
      * @param int $id
      * @param GradesRepository $repository
@@ -43,20 +43,31 @@ class GradesController extends Controller
      */
     public function show($id, GradesRepository $repository)
     {
-        $item = $repository->getById($id);
+        $item = $repository->detail($id);
         return $this->response($item);
     }
     
     /**
-     * 新增班级
+     * 新增
      */
     public function store()
     {
         return __METHOD__;
     }
     
-    public function update()
+    /**
+     * 修改
+     * 
+     * @param Request $request
+     * @param GradesRepository $repository
+     * @param int $id
+     * @return array
+     */
+    public function update(Request $request, GradesRepository $repository, $id)
     {
-        return __METHOD__;
+        $data = $request->input();
+        $result = $repository->update($id, $data);
+        
+        return $this->response($result);
     }
 }

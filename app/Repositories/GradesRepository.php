@@ -5,54 +5,76 @@ use App\Models\Grades;
 
 class GradesRepository extends Repository
 {
-    public function getById($id)
+    /**
+     * 详情
+     * 
+     * @param int $id
+     * @return array
+     */
+    public function detail($id)
     {
         $item = Grades::find($id);
         
         return $item;
     }
-
-    public function list($params)
+    
+    /**
+     * 列表
+     * 
+     * @param array $params
+     * @return array
+     */
+    public function list($conditions)
     {
-        $query = Grades::where($params);
+        $query = Grades::where($conditions);
         
         $count = $query->count();
         //$items = $query->skip($offset)->take($limit)->get();
         $items = $query->get();
-
+        
         return [
-            'list' => $items,
-            'total' => $count
+            'total' => $count,
+            'list' => $items
         ];
     }
     
-    public function store($name, $nationality, $visibility, $last_update_admin_id)
+    /**
+     * 新增
+     * 
+     * @param array $data
+     * @return \App\Models\Grades
+     */
+    public function store($data)
     {
-        $company = new Company();
-        $company->name = $name;
-        $company->nationality = $nationality;
-        $company->visibility = $visibility;
-        $company->last_update_admin_id = $last_update_admin_id;
-        $company->save();
-
-        return $company;
+        $item = new Grades();
+        
+        $item->title = $data['title'];
+        
+        $item->save();
+        
+        return $item;
     }
-
-    public function update($id, $name, $nationality, $visibility, $last_update_admin_id)
-    {
-        $company = Company::find($id);
-        $company->name = $name;
-        $company->nationality = $nationality;
-        $company->visibility = $visibility;
-        $company->last_update_admin_id = $last_update_admin_id;
-        $company->save();
-
-        return $company;
-    }
-
-    public function getUserCountByCompanyId($company_id)
-    {
-        return UserProfile::where('company_id', $company_id)->count();
-    } 
     
+    /**
+     * 修改
+     * 
+     * @param int $id
+     * @param array $data
+     * @return \App\Models\Grades
+     */
+    public function update($id, $data = [])
+    {
+        $item = Grades::find($id);
+        
+        foreach ($data as $key => $value)
+        {
+            if ($item->getAttribute($key)) {
+                $item->$key = $value;
+            }
+        }
+        
+        $item->save();
+        
+        return $item;
+    }
 }
