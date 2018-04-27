@@ -24,13 +24,12 @@ class GradesRepository extends Repository
      * @param array $params
      * @return array
      */
-    public function list($conditions)
+    public function list($conditions, $offset = 0, $limit = 10, $order = 'sort')
     {
         $query = Grades::where($conditions);
         
         $count = $query->count();
-        //$items = $query->skip($offset)->take($limit)->get();
-        $items = $query->get();
+        $items = $query->orderBy($order)->skip($offset)->take($limit)->get();
         
         return [
             'total' => $count,

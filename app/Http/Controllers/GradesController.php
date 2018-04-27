@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Repositories\GradesRepository;
 use Illuminate\Http\Request;
+use App\Constants\Dictionary;
 
 /**
  * +-----------+-------------------+---------------+-------------------------+
@@ -30,7 +31,11 @@ class GradesController extends Controller
      */
     public function index(Request $request, GradesRepository $repository)
     {
-        $result = $repository->list([]);
+        $page = $request->input('page', 1);
+        $size = $request->input('size', Dictionary::PAGE_SIZE);
+        $offset = (int)($page-1) * $size;
+        
+        $result = $repository->list([], $offset, $size);
         return $this->response($result);
     }
     
