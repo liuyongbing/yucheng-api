@@ -24,3 +24,5 @@ Route::resource('grades', 'GradesController');
 Route::resource('courses', 'CoursesController');
 //课程
 Route::resource('teachings', 'TeachingsController');
+//附件上传:{filetype}是以文件用途来区分保存目录
+Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload')->name('attachment.upload');
