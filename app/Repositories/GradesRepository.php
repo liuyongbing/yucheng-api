@@ -48,7 +48,10 @@ class GradesRepository extends Repository
     {
         $item = new Grades();
         
-        $item->title = $data['title'];
+        $item->title  = !empty($data['title']) ? $data['title'] : '';
+        $item->image  = !empty($data['image']) ? $data['image'] : '';
+        $item->sort   = (int)$data['sort'];
+        $item->status = 1;
         
         $item->save();
         
@@ -72,7 +75,6 @@ class GradesRepository extends Repository
                 $item->$key = $value;
             }
         }
-        
         $item->save();
         
         return $item;

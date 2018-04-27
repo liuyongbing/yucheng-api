@@ -7,7 +7,6 @@ use Illuminate\Database\Eloquent\Model;
 class Grades extends Model
 {
     protected $hidden = [
-        'status',
         'created_at',
         'updated_at',
     ];

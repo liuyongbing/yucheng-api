@@ -49,10 +49,17 @@ class GradesController extends Controller
     
     /**
      * 新增
+     * 
+     * @param Request $request
+     * @param GradesRepository $repository
+     * @return array
      */
-    public function store()
+    public function store(Request $request, GradesRepository $repository)
     {
-        return __METHOD__;
+        $data = $request->input();
+        $result = $repository->store($data);
+        
+        return $this->response($result);
     }
     
     /**
