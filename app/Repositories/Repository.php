@@ -1,30 +1,85 @@
 <?php
 namespace App\Repositories;
 
-use App\Helpers\SystemHelper;
+use App\Models\BasicModel;
 
 class Repository
 {
-    protected function responseError($errorCode)
+    public function getModel()
     {
-        $errorMessage = SystemHelper::getResponseErrorMessage($errorCode);
-        throw new \Exception($errorMessage, $errorCode);
+        return new BasicModel();
     }
-
     /**
-     * 处理排序
-     * 例如： $orderBy = id:asc|position:desc
-     * @param $orderBy
+     * 详情
+     *
+     * @param int $id
      * @return array
      */
-    protected function _processOrderBy($orderBy)
+    public function detail($id)
     {
-        $orderBy = explode('|', $orderBy);
+        $item = $this->getModel()->find($id);
         
-        foreach ($orderBy as $k => $v) {
-            $orderBy[$k] = explode(':', $v);
+        return $item;
+    }
+    
+    /**
+     * 列表
+     *
+     * @param array $params
+     * @return array
+     */
+    public function list($conditions, $offset = 0, $limit = 10, $order = 'sort')
+    {
+        $query = $this->getModel()->where($conditions);
+        
+        $count = $query->count();
+        $items = $query->orderBy($order)->skip($offset)->take($limit)->get();
+        
+        return [
+                'total' => $count,
+                'list' => $items
+        ];
+    }
+    
+    /**
+     * 新增
+     *
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function store($data)
+    {
+        $item = $this->getModel();
+        
+        $item->title  = !empty($data['title']) ? $data['title'] : '';
+        $item->image  = !empty($data['image']) ? $data['image'] : '';
+        $item->sort   = (int)$data['sort'];
+        $item->status = 1;
+        
+        $item->save();
+        
+        return $item;
+    }
+    
+    /**
+     * 修改
+     *
+     * @param int $id
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function update($id, $data = [])
+    {
+        $item = $this->getModel()->find($id);
+        
+        foreach ($data as $key => $value)
+        {
+            if ($item->getAttribute($key)) {
+                $item->$key = $value;
+            }
         }
-
-        return $orderBy;
+        $item->save();
+        
+        return $item;
     }
 }

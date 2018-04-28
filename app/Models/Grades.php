@@ -4,15 +4,9 @@ namespace App\Models;
 
 use App\Constants\Dictionary;
 use App\Helpers\FileHelper;
-use Illuminate\Database\Eloquent\Model;
 
-class Grades extends Model
+class Grades extends BasicModel
 {
-    protected $hidden = [
-        'created_at',
-        'updated_at',
-    ];
-    
     protected $appends = ['status_desc', 'image_url'];
     
     /**
