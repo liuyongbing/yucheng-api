@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Constants\Dictionary;
+use App\Helpers\FileHelper;
 use Illuminate\Database\Eloquent\Model;
 
 class Grades extends Model
@@ -19,7 +21,7 @@ class Grades extends Model
      * @return string
      */
     public function getImageUrlAttribute() {
-        return 'http://www.baidu.com/' . $this->image;
+        return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['COURSEWARE']);
     }
     
     /**
