@@ -36,8 +36,8 @@ class Repository
         $items = $query->orderBy($order)->skip($offset)->take($limit)->get();
         
         return [
-                'total' => $count,
-                'list' => $items
+            'total' => $count,
+            'list' => $items
         ];
     }
     
