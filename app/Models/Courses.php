@@ -7,7 +7,7 @@ use App\Helpers\FileHelper;
 
 class Courses extends BasicModel
 {
-    protected $appends = ['status_desc', 'image_url'];
+    protected $appends = ['status_desc', 'image_url', 'grade_name'];
     
     /**
      * 图片:完整Url
@@ -15,8 +15,7 @@ class Courses extends BasicModel
      * @return string
      */
     public function getImageUrlAttribute() {
-        return FileHelper::fileUrl($this->image, Dictionary
-                ::FILE_TYPE['COURSEWARE']);
+        return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['COURSEWARE']);
     }
     
     /**
@@ -26,5 +25,22 @@ class Courses extends BasicModel
      */
     public function getStatusDescAttribute() {
         return trans('attributes.grades.status.' . $this->status);
+    }
+    
+    /**
+     * 班级:文本
+     *
+     * @return string
+     */
+    public function getGradeNameAttribute() {
+        $grade = $this->grade();
+        
+        return $grade->title;
+    }
+    
+    public function grade()
+    {
+        return Grades::find($this->grade_id);
+        //return $this->hasOne('App\Models\Grades');
     }
 }
