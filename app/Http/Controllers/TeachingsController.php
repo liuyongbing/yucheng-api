@@ -2,9 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
+use App\Repositories\TeachingsRepository;
 
 class TeachingsController extends Controller
 {
-    //
+    public function getRepository()
+    {
+        return new TeachingsRepository();
+    }
 }

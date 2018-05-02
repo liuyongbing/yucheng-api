@@ -15,5 +15,6 @@ class VerifyCsrfToken extends Middleware
         'attachment/upload/*',
         'grades*',
         'courses*',
+        'teachings*',
     ];
 }
