@@ -71,13 +71,16 @@ class Repository
     public function update($id, $data = [])
     {
         $item = $this->getModel()->find($id);
+        $attributes = $item->getAttributes();
         
         foreach ($data as $key => $value)
         {
-            if ($item->getAttribute($key)) {
+            if (key_exists($key, $attributes))
+            {
                 $item->$key = $value;
             }
         }
+        
         $item->save();
         
         return $item;

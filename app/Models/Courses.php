@@ -40,7 +40,11 @@ class Courses extends BasicModel
     
     public function grade()
     {
-        return Grades::find($this->grade_id);
+        $model = new Grades();
+        if (!empty($this->grade_id)) {
+            $model = $model->find($this->grade_id);
+        }
+        return $model;
         //return $this->hasOne('App\Models\Grades');
     }
 }
