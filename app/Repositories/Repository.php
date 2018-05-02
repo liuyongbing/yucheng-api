@@ -5,10 +5,18 @@ use App\Models\BasicModel;
 
 class Repository
 {
-    public function getModel()
+    public $model = null;
+    
+    public function __construct()
     {
-        return new BasicModel();
+        $this->init();
     }
+    
+    public function init()
+    {
+        $this->model = new BasicModel();
+    }
+        
     /**
      * 详情
      *
@@ -17,7 +25,7 @@ class Repository
      */
     public function detail($id)
     {
-        $item = $this->getModel()->find($id);
+        $item = $this->model->find($id);
         
         return $item;
     }
@@ -30,7 +38,7 @@ class Repository
      */
     public function list($conditions, $offset = 0, $limit = 10, $order = 'sort')
     {
-        $query = $this->getModel()->where($conditions);
+        $query = $this->model->where($conditions);
         
         $count = $query->count();
         $items = $query->orderBy($order)->skip($offset)->take($limit)->get();
@@ -49,7 +57,7 @@ class Repository
      */
     public function store($data)
     {
-        $item = $this->getModel();
+        $item = $this->model;
         
         $item->title  = !empty($data['title']) ? $data['title'] : '';
         $item->image  = !empty($data['image']) ? $data['image'] : '';
@@ -70,7 +78,7 @@ class Repository
      */
     public function update($id, $data = [])
     {
-        $item = $this->getModel()->find($id);
+        $item = $this->model->find($id);
         $attributes = $item->getAttributes();
         
         foreach ($data as $key => $value)

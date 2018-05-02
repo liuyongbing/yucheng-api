@@ -6,8 +6,8 @@ use App\Repositories\CoursesRepository;
 
 class CoursesController extends Controller
 {
-    public function getRepository()
+    public function init()
     {
-        return new CoursesRepository();
+        return $this->repository = new CoursesRepository();
     }
 }

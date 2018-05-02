@@ -6,8 +6,8 @@ use App\Repositories\GradesRepository;
 
 class GradesController extends Controller
 {
-    public function getRepository()
+    public function init()
     {
-        return new GradesRepository();
+        return $this->repository = new GradesRepository();
     }
 }

@@ -5,9 +5,9 @@ use App\Models\Courses;
 
 class CoursesRepository extends Repository
 {
-    public function getModel()
+    public function init()
     {
-        return new Courses();
+        return $this->model = new Courses();
     }
     
     /**
@@ -18,7 +18,7 @@ class CoursesRepository extends Repository
      */
     public function store($data)
     {
-        $item = $this->getModel();
+        $item = $this->model;
         
         $item->grade_id = (int)$data['grade_id'];
         $item->title  = !empty($data['title']) ? $data['title'] : '';

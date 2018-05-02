@@ -28,6 +28,18 @@ class Controller extends BaseController
 {
     use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
     
+    public $repository = null;
+    
+    public function __construct()
+    {
+        $this->init();
+    }
+    
+    public function init()
+    {
+        $this->repository = new Repository();
+    }
+    
     /**
      * 列表
      *
@@ -41,7 +53,7 @@ class Controller extends BaseController
         $size = $request->input('size', Dictionary::PAGE_SIZE);
         $offset = (int)($page-1) * $size;
         
-        $result = $this->getRepository()->list([], $offset, $size);
+        $result = $this->repository->list([], $offset, $size);
         return $this->response($result);
     }
     
@@ -54,7 +66,7 @@ class Controller extends BaseController
      */
     public function show($id)
     {
-        $item = $this->getRepository()->detail($id);
+        $item = $this->repository->detail($id);
         return $this->response($item);
     }
     
@@ -68,7 +80,7 @@ class Controller extends BaseController
     public function store(Request $request)
     {
         $data = $request->input();
-        $result = $this->getRepository()->store($data);
+        $result = $this->repository->store($data);
         
         return $this->response($result);
     }
@@ -84,14 +96,9 @@ class Controller extends BaseController
     public function update(Request $request, $id)
     {
         $data = $request->input();
-        $result = $this->getRepository()->update($id, $data);
+        $result = $this->repository->update($id, $data);
         
         return $this->response($result);
-    }
-    
-    public function getRepository()
-    {
-        return new Repository();
     }
     
     protected function response($result)

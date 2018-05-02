@@ -5,9 +5,9 @@ use App\Models\Teachings;
 
 class TeachingsRepository extends Repository
 {
-    public function getModel()
+    public function init()
     {
-        return new Teachings();
+        return $this->model = new Teachings();
     }
     
     /**
@@ -18,7 +18,7 @@ class TeachingsRepository extends Repository
      */
     public function store($data)
     {
-        $item = $this->getModel();
+        $item = $this->model;
         
         $item->course_id = (int)$data['course_id'];
         $item->title  = !empty($data['title']) ? $data['title'] : '';

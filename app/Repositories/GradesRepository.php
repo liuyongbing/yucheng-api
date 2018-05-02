@@ -5,8 +5,8 @@ use App\Models\Grades;
 
 class GradesRepository extends Repository
 {
-    public function getModel()
+    public function init()
     {
-        return new Grades();
+        return $this->model = new Grades();
     }
 }

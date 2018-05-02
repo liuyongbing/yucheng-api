@@ -6,8 +6,8 @@ use App\Repositories\TeachingsRepository;
 
 class TeachingsController extends Controller
 {
-    public function getRepository()
+    public function init()
     {
-        return new TeachingsRepository();
+        return $this->repository = new TeachingsRepository();
     }
 }
