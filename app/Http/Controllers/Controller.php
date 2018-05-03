@@ -52,7 +52,9 @@ class Controller extends BaseController
         $size = $request->input('size', Dictionary::PAGE_SIZE);
         $offset = (int)($page-1) * $size;
         
-        $result = $this->repository->list([], $offset, $size);
+        $order = $request->input('order', '');
+        
+        $result = $this->repository->list([], $offset, $size, $order);
         return $this->response($result);
     }
     

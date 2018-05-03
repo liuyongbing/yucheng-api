@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-abstract class BasicModel extends Model
+class BasicModel extends Model
 {
     protected $hidden = [
         'created_at',
