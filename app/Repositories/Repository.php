@@ -36,12 +36,18 @@ class Repository
      * @param array $params
      * @return array
      */
-    public function list($conditions, $offset = 0, $limit = 10, $order = 'sort')
+    public function list($conditions, $offset = 0, $limit = 10, $order = '')
     {
         $query = $this->model->where($conditions);
         
         $count = $query->count();
-        $items = $query->orderBy($order)->skip($offset)->take($limit)->get();
+        
+        if (!empty($order)) 
+        {
+            $query = $query->orderBy($order);
+        }
+            
+        $items = $query->skip($offset)->take($limit)->get();
         
         return [
             'total' => $count,

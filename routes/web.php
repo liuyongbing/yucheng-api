@@ -14,15 +14,15 @@
 Route::get('/', function () {
     return view('welcome');
 });
-//学员资料
-Route::resource('students', 'StudentController');
 //用户
 Route::resource('users', 'UsersController');
+//指导员
+Route::resource('trainers', 'TrainersController');
 //班级
 Route::resource('grades', 'GradesController');
 //课程
 Route::resource('courses', 'CoursesController');
-//课程
+//课时
 Route::resource('teachings', 'TeachingsController');
 //附件上传:{filetype}是以文件用途来区分保存目录
 Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload')->name('attachment.upload');

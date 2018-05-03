@@ -1,10 +1,54 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Illuminate\Database\Eloquent\Model;
-
-class Users extends Model
+class Users extends BasicModel
 {
-    //
+    protected $table = 'users';
+    
+    protected $hidden = [
+        'username',
+        'restrict_type',
+        'restrict_value',
+        'restrict_value_sub',
+        'created_at',
+        'updated_at',
+    ];
+    
+    protected $appends = ['account', 'status_desc', 'user_profile'];
+    
+    public function getAccountAttribute()
+    {
+        return $this->username;
+    }
+    
+    /**
+     * 状态:文本
+     *
+     * @return string
+     */
+    public function getStatusDescAttribute()
+    {
+        return trans('attributes.grades.status.' . $this->status);
+    }
+    
+    /**
+     * 用户信息
+     *
+     * @return string
+     */
+    public function getUserProfileAttribute()
+    {
+        return $this->userProfile();
+    }
+    
+    public function userProfile()
+    {
+        $model = new UserProfiles();
+        if (!empty($this->id)) {
+            //TODO: find by user_id
+            $model = $model->find($this->id);
+        }
+        return $model;
+    }
 }

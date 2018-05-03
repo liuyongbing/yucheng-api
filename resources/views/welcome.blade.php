@@ -167,23 +167,23 @@
             <li>教练
                 <ul>
                     <li>
-                        <a href="{{ route('users.index') }}" target="_blank">列表</a>
-                        {{ route('users.index') }}
+                        <a href="{{ route('trainers.index') }}" target="_blank">列表</a>
+                        {{ route('trainers.index') }}
                         (GET)
                     </li>
                     <li>
-                        <a href="{{ route('users.create') }}" target="_blank">新增</a>
-                        {{ route('users.store') }}
+                        <a href="{{ route('trainers.create') }}" target="_blank">新增</a>
+                        {{ route('trainers.store') }}
                         (POST)
                     </li>
                     <li>
-                        <a href="{{ route('users.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('users.update', ['id' => 1]) }}
+                        <a href="{{ route('trainers.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('trainers.update', ['id' => 1]) }}
                         (PUT)
                     </li>
                     <li>
-                        <a href="{{ route('users.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('users.show', ['id' => 1]) }}
+                        <a href="{{ route('trainers.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('trainers.show', ['id' => 1]) }}
                         (GET)
                     </li>
                 </ul>
