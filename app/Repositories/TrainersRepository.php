@@ -31,4 +31,40 @@ class TrainersRepository extends Repository
         
         return $item;
     }
+    
+    /**
+     * 修改
+     *
+     * @param int $id
+     * @param array $data
+     */
+    public function update($id, $data = [])
+    {
+        $item = $this->model->find($id);
+        $itemAtt = $item->getAttributes();
+        
+        $profile = $item->user_profile;
+        $profileAtt = $profile->getAttributes();
+        
+        foreach ($data as $key => $value)
+        {
+            if (key_exists($key, $itemAtt))
+            {
+                $item->$key = $value;
+            }
+            
+            if (key_exists($key, $profileAtt))
+            {
+                $profile->$key = $value;
+            }
+        }
+        
+        //使用手机号登录
+        $item->username = $profile->mobile;
+        
+        $item->save();
+        $profile->save();
+        
+        return $item;
+    }
 }

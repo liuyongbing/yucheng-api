@@ -6,6 +6,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class UserProfiles extends Model
 {
+    protected $primaryKey = 'user_id';
+    
     protected $hidden = [
         'id',
         'user_id',
