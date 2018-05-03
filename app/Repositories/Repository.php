@@ -3,6 +3,14 @@ namespace App\Repositories;
 
 use App\Models\BasicModel;
 
+/**
+ * Repository 基类
+ * 
+ * 其他Repository 可根据业务需要重写基类相关方法
+ * 
+ * @author liuyongbing
+ * @email  54026099@qq.com
+ */
 class Repository
 {
     public $model = null;

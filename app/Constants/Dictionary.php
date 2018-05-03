@@ -9,4 +9,10 @@ class Dictionary
     const FILE_TYPE = [
         'COURSEWARE' => 'courseware', //课件
     ];
+    
+    const USER_TYPE = [
+        'admin' => 1,//管理员
+        'branch' => 2,//分馆
+        'trainer' => 3,//教练
+    ];
 }

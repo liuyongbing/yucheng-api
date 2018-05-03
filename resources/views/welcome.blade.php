@@ -142,23 +142,23 @@
             <li>分馆
                 <ul>
                     <li>
-                        <a href="{{ route('users.index') }}" target="_blank">列表</a>
-                        {{ route('users.index') }}
+                        <a href="{{ route('branches.index') }}" target="_blank">列表</a>
+                        {{ route('branches.index') }}
                         (GET)
                     </li>
                     <li>
-                        <a href="{{ route('users.create') }}" target="_blank">新增</a>
-                        {{ route('users.store') }}
+                        <a href="{{ route('branches.create') }}" target="_blank">新增</a>
+                        {{ route('branches.store') }}
                         (POST)
                     </li>
                     <li>
-                        <a href="{{ route('users.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('users.update', ['id' => 1]) }}
+                        <a href="{{ route('branches.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('branches.update', ['id' => 1]) }}
                         (PUT)
                     </li>
                     <li>
-                        <a href="{{ route('users.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('users.show', ['id' => 1]) }}
+                        <a href="{{ route('branches.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('branches.show', ['id' => 1]) }}
                         (GET)
                     </li>
                 </ul>

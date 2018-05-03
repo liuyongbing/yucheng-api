@@ -7,7 +7,7 @@ class CoursesRepository extends Repository
 {
     public function init()
     {
-        return $this->model = new Courses();
+        $this->model = new Courses();
     }
     
     /**

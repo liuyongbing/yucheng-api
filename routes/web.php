@@ -16,8 +16,10 @@ Route::get('/', function () {
 });
 //用户
 Route::resource('users', 'UsersController');
-//指导员
+//教练
 Route::resource('trainers', 'TrainersController');
+//分馆
+Route::resource('branches', 'BranchesController');
 //班级
 Route::resource('grades', 'GradesController');
 //课程

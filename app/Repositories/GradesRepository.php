@@ -7,6 +7,6 @@ class GradesRepository extends Repository
 {
     public function init()
     {
-        return $this->model = new Grades();
+        $this->model = new Grades();
     }
 }

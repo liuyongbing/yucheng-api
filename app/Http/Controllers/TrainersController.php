@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Dictionary;
 use App\Repositories\TrainersRepository;
 
-class TrainersController extends Controller
+class TrainersController extends UsersController
 {
     public function init()
     {
-        return $this->repository = new TrainersRepository();
+        $this->repository = new TrainersRepository();
+        
+        $this->userType = Dictionary::USER_TYPE['trainer'];
     }
 }

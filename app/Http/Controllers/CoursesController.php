@@ -8,6 +8,6 @@ class CoursesController extends Controller
 {
     public function init()
     {
-        return $this->repository = new CoursesRepository();
+        $this->repository = new CoursesRepository();
     }
 }

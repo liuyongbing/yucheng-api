@@ -44,7 +44,6 @@ class Controller extends BaseController
      * 列表
      *
      * @param Request $request
-     * @param GradesRepository $repository
      * @return array
      */
     public function index(Request $request)
