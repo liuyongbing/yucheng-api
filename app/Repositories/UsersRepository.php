@@ -24,23 +24,24 @@ class UsersRepository extends Repository
     public function store($data)
     {
         $item = $this->model;
+        
         $profile = $item->user_profile;
         
-        $profile->username = !empty($data['title']) ? $data['title'] : '';
-        $profile->gender = !empty($data['gender']) ? $data['gender'] : '';
-        $profile->mobile = !empty($data['mobile']) ? $data['mobile'] : '';
-        $profile->email = !empty($data['email']) ? $data['email'] : '';
-        $profile->mobile = !empty($data['address']) ? $data['address'] : '';
-        $profile->sort   = (int)$data['sort'];
+        $profile->username  = !empty($data['username']) ? $data['username'] : '';
+        $profile->gender    = !empty($data['gender']) ? $data['gender'] : '';
+        $profile->mobile    = !empty($data['mobile']) ? $data['mobile'] : '';
+        $profile->email     = !empty($data['email']) ? $data['email'] : '';
+        $profile->address   = !empty($data['address']) ? $data['address'] : '';
         
         $item->username = $profile->mobile;
         $item->user_type = $this->userType;
         $item->status = 0;
         
-        $profile->user_id   = $item->id;
-        
-        $item->save();
-        $profile->save();
+        if ($item->save())
+        {
+            $profile->user_id   = $item->id;
+            $profile->save();
+        }
         
         return $item;
     }
