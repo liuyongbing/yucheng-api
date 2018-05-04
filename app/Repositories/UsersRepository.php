@@ -1,13 +1,18 @@
 <?php
 namespace App\Repositories;
 
+use App\Constants\Dictionary;
 use App\Models\Users;
 
 class UsersRepository extends Repository
 {
+    public $userType;
+    
     public function init()
     {
         $this->model = new Users();
+        
+        $this->userType = Dictionary::USER_TYPE['admin'];
     }
     
     /**
@@ -19,15 +24,23 @@ class UsersRepository extends Repository
     public function store($data)
     {
         $item = $this->model;
+        $profile = $item->user_profile;
         
-        $item->grade_id = (int)$data['grade_id'];
-        $item->title  = !empty($data['title']) ? $data['title'] : '';
-        $item->summary  = !empty($data['summary']) ? $data['summary'] : '';
-        $item->image  = !empty($data['image']) ? $data['image'] : '';
-        $item->sort   = (int)$data['sort'];
-        $item->status = 1;
+        $profile->username = !empty($data['title']) ? $data['title'] : '';
+        $profile->gender = !empty($data['gender']) ? $data['gender'] : '';
+        $profile->mobile = !empty($data['mobile']) ? $data['mobile'] : '';
+        $profile->email = !empty($data['email']) ? $data['email'] : '';
+        $profile->mobile = !empty($data['address']) ? $data['address'] : '';
+        $profile->sort   = (int)$data['sort'];
+        
+        $item->username = $profile->mobile;
+        $item->user_type = $this->userType;
+        $item->status = 0;
+        
+        $profile->user_id   = $item->id;
         
         $item->save();
+        $profile->save();
         
         return $item;
     }

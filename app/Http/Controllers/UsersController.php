@@ -8,13 +8,9 @@ use Illuminate\Http\Request;
 
 class UsersController extends Controller
 {
-    public $userType;
-    
     public function init()
     {
         $this->repository = new UsersRepository();
-        
-        $this->userType = Dictionary::USER_TYPE['admin'];
     }
     
     /**
@@ -30,7 +26,7 @@ class UsersController extends Controller
         $offset = (int)($page-1) * $size;
         
         $params = [
-            'user_type' => $this->userType
+            'user_type' => $this->repository->userType
         ];
         $result = $this->repository->list($params, $offset, $size);
         

@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Constants\Dictionary;
 use App\Models\Branches;
 
 /**
@@ -13,5 +14,7 @@ class BranchesRepository extends UsersRepository
     public function init()
     {
         $this->model = new Branches();
+        
+        $this->userType = Dictionary::USER_TYPE['branch'];
     }
 }
