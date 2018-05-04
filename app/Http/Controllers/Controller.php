@@ -62,7 +62,6 @@ class Controller extends BaseController
      * 详情
      *
      * @param int $id
-     * @param GradesRepository $repository
      * @return array
      */
     public function show($id)
@@ -72,10 +71,9 @@ class Controller extends BaseController
     }
     
     /**
-     * 新增
+     * 新增 POST
      *
      * @param Request $request
-     * @param GradesRepository $repository
      * @return array
      */
     public function store(Request $request)
@@ -87,10 +85,9 @@ class Controller extends BaseController
     }
     
     /**
-     * 修改
+     * 修改 PUT
      *
      * @param Request $request
-     * @param GradesRepository $repository
      * @param int $id
      * @return array
      */

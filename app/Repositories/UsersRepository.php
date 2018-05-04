@@ -27,13 +27,38 @@ class UsersRepository extends Repository
         
         $profile = $item->user_profile;
         
+        //分馆 & 教练 公共信息
         $profile->username  = !empty($data['username']) ? $data['username'] : '';
         $profile->gender    = !empty($data['gender']) ? $data['gender'] : '';
         $profile->mobile    = !empty($data['mobile']) ? $data['mobile'] : '';
         $profile->email     = !empty($data['email']) ? $data['email'] : '';
         $profile->address   = !empty($data['address']) ? $data['address'] : '';
         
-        $item->username = $profile->mobile;
+        //分馆 私有信息
+        if (!empty($data['birthday']))
+        {
+            $profile->birthday = $data['birthday'];
+        }
+        if (!empty($data['expiry_date']))
+        {
+            $profile->expiry_date = $data['expiry_date'];
+        }
+        if (!empty($data['city']))
+        {
+            $profile->city = $data['city'];
+        }
+        if (!empty($data['id_number']))
+        {
+            $profile->id_number = $data['id_number'];
+        }
+        if (!empty($data['investment_amount']))
+        {
+            $profile->investment_amount = $data['investment_amount'];
+        }
+        
+        //设置登录名
+        $item->username = $this->loginname($profile);
+        
         $item->user_type = $this->userType;
         $item->status = 0;
         
@@ -73,12 +98,29 @@ class UsersRepository extends Repository
             }
         }
         
-        //使用手机号登录
-        $item->username = $profile->mobile;
+        //设置登录名
+        $item->username = $this->loginname($profile);
         
         $item->save();
         $profile->save();
         
         return $item;
+    }
+    
+    /**
+     * 采用用户某项基本信息用作登录名
+     * 
+     * @param Model $profile
+     * @return string
+     */
+    public function loginname($profile)
+    {
+        $loginname = '';
+        $attributes = $profile->getAttributes();
+        if (key_exists(Dictionary::USER_PROFILE_KEY_FOR_LOGIN, $attributes))
+        {
+            $loginname = $profile->$key;
+        }
+        return $loginname;
     }
 }

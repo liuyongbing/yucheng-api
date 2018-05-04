@@ -15,4 +15,6 @@ class Dictionary
         'branch' => 2,//分馆
         'trainer' => 3,//教练
     ];
+    
+    const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
 }
