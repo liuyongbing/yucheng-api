@@ -18,5 +18,6 @@ class VerifyCsrfToken extends Middleware
         'teachings*',
         'trainers*',
         'branches*',
+        'sms*',
     ];
 }

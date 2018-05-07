@@ -27,4 +27,6 @@ Route::resource('courses', 'CoursesController');
 //课时
 Route::resource('teachings', 'TeachingsController');
 //附件上传:{filetype}是以文件用途来区分保存目录
-Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload')->name('attachment.upload');
+Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload');
+//短信
+Route::post('/sms/send', 'SmsController@send');
