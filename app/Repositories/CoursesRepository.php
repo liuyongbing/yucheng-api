@@ -20,12 +20,13 @@ class CoursesRepository extends Repository
     {
         $item = $this->model;
         
-        $item->grade_id = (int)$data['grade_id'];
-        $item->title  = !empty($data['title']) ? $data['title'] : '';
-        $item->summary  = !empty($data['summary']) ? $data['summary'] : '';
-        $item->image  = !empty($data['image']) ? $data['image'] : '';
-        $item->sort   = (int)$data['sort'];
-        $item->status = 1;
+        $item->grade_id     = (int)$data['grade_id'];
+        $item->title        = !empty($data['title']) ? $data['title'] : '';
+        $item->summary      = !empty($data['summary']) ? $data['summary'] : '';
+        $item->image        = !empty($data['image']) ? $data['image'] : '';
+        $item->class_total  = (int)$data['class_total'];
+        $item->sort         = (int)$data['sort'];
+        $item->status       = 1;
         
         $item->save();
         
