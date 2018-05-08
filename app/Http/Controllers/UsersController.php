@@ -32,4 +32,13 @@ class UsersController extends Controller
         
         return $this->response($result);
     }
+    
+    public function login(Request $request)
+    {
+        $username = $request->input('username', '');
+        $params = $request->all();
+//echo '<pre>';print_r($params);exit();
+        $result = $this->repository->login($username, $params);
+        return $this->response($result);
+    }
 }

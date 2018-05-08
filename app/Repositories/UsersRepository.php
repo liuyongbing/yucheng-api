@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Constants\Dictionary;
 use App\Models\Users;
+use App\Models\Sms;
 
 class UsersRepository extends Repository
 {
@@ -13,6 +14,98 @@ class UsersRepository extends Repository
         $this->model = new Users();
         
         $this->userType = Dictionary::USER_TYPE['admin'];
+    }
+    
+    public function login($loginname, $params = [])
+    {
+        //验证验证码
+        $verify = $this->verifycode($params['username'], $params['verifycode']);
+        if (true !== $verify)
+        {
+            return ['验证码错误'];
+        }
+        
+        $this->model = $this->model->where('username', $loginname)->first();
+        if (empty($this->model))
+        {
+            return ['手机号错误'];
+        }
+        
+        $result = $this->verify($params);
+        
+        return $result;
+    }
+    
+    protected function verify($params)
+    {
+        $result = [];
+        switch ($this->model->user_type)
+        {
+            //管理员
+            case Dictionary::USER_TYPE['admin']:
+                $result = $this->verifyAdmin($params);
+                break;
+                //分馆
+            case Dictionary::USER_TYPE['branch']:
+                $result = $this->verifyBranch($params);
+                break;
+                //教练
+            case Dictionary::USER_TYPE['trainer']:
+                $result = $this->verifyTrainer($params);
+                break;
+            default:
+                break;
+        }
+        
+        return $result;
+    }
+    
+    protected function verifyAdmin($params)
+    {
+        if ($this->model->restrict_value !== $params['mac_token'])
+        {
+            $result = ['不允许此电脑登录'];
+        }
+        
+        return $result;
+    }
+    
+    protected function verifyTrainer($params)
+    {
+        return $this->verifyBranch($params);
+    }
+    
+    protected function verifyBranch($params)
+    {
+        $result = [];
+        if ($this->model->restrict_value !== $params['mac_token'])
+        {
+            $result = ['不允许此电脑登录'];
+        }
+        
+        return $result;
+    }
+    
+    /**
+     * 验证验证码
+     * 
+     * @param string $mobile
+     * @param int $code
+     * @return boolean
+     */
+    protected function verifycode($mobile, $code)
+    {
+        $end = time();
+        $start = $end - Dictionary::VERIFYCODE_TIME;
+        $end = date('Y-m-d H:i:s', $end);
+        $start = date('Y-m-d H:i:s', $start);
+        
+        $message = Sms::where('mobile', $mobile)
+                    ->whereBetween('created_at', [
+                        $start, $end
+                    ])->value('message');
+                    
+        return $message === $code;
     }
     
     /**

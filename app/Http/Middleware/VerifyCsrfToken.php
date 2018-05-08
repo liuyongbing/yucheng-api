@@ -19,5 +19,6 @@ class VerifyCsrfToken extends Middleware
         'trainers*',
         'branches*',
         'sms*',
+        'users/login',
     ];
 }

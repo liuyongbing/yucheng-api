@@ -17,4 +17,6 @@ class Dictionary
     ];
     
     const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
+    
+    const VERIFYCODE_TIME = 12000;//验证码有效期(秒)
 }

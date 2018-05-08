@@ -15,7 +15,7 @@ Route::get('/', function () {
     return view('welcome');
 });
 //用户
-Route::resource('users', 'UsersController');
+Route::post('users/login', 'UsersController@login');
 //教练
 Route::resource('trainers', 'TrainersController');
 //分馆
