@@ -15,7 +15,8 @@ Route::get('/', function () {
     return view('welcome');
 });
 //用户
-Route::post('users/login', 'UsersController@login');
+Route::resource('users', 'UsersController');
+Route::post('users/login', 'UsersController@login');//登录
 //教练
 Route::resource('trainers', 'TrainersController');
 //分馆
@@ -24,8 +25,12 @@ Route::resource('branches', 'BranchesController');
 Route::resource('grades', 'GradesController');
 //课程
 Route::resource('courses', 'CoursesController');
-//课时
+//课件
 Route::resource('teachings', 'TeachingsController');
+//分类
+Route::resource('categories', 'CategoriesController');
+//资讯
+Route::resource('news', 'NewsController');
 //附件上传:{filetype}是以文件用途来区分保存目录
 Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload');
 //短信

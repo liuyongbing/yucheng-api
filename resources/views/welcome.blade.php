@@ -189,6 +189,56 @@
                 </ul>
             </li>
             
+            <li>分类
+                <ul>
+                    <li>
+                        <a href="{{ route('categories.index') }}" target="_blank">列表</a>
+                        {{ route('categories.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('categories.create') }}" target="_blank">新增</a>
+                        {{ route('categories.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('categories.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('categories.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('categories.show', ['id' => 10000]) }}" target="_blank">详情</a>
+                        {{ route('categories.show', ['id' => 10000]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>资讯
+                <ul>
+                    <li>
+                        <a href="{{ route('news.index') }}" target="_blank">列表</a>
+                        {{ route('news.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('news.create') }}" target="_blank">新增</a>
+                        {{ route('news.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('news.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('news.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('news.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('news.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
             <li>登录
                 <ul>
                     <li>
