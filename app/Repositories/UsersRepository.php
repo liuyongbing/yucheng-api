@@ -62,12 +62,7 @@ class UsersRepository extends Repository
     
     protected function verifyAdmin($params)
     {
-        if ($this->model->restrict_value !== $params['mac_token'])
-        {
-            $result = ['不允许此电脑登录'];
-        }
-        
-        return $result;
+        return $this->model;
     }
     
     protected function verifyTrainer($params)
@@ -104,7 +99,7 @@ class UsersRepository extends Repository
                     ->whereBetween('created_at', [
                         $start, $end
                     ])->value('message');
-                    
+        
         return $message === $code;
     }
     

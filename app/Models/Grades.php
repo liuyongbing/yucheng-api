@@ -14,7 +14,8 @@ class Grades extends BasicModel
      * 
      * @return string
      */
-    public function getImageUrlAttribute() {
+    public function getImageUrlAttribute()
+    {
         return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['COURSEWARE']);
     }
     
@@ -23,7 +24,8 @@ class Grades extends BasicModel
      * 
      * @return string
      */
-    public function getStatusDescAttribute() {
+    public function getStatusDescAttribute()
+    {
         return trans('attributes.grades.status.' . $this->status);
     }
 }
