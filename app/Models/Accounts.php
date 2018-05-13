@@ -6,6 +6,7 @@ class Accounts extends Users
 {
     protected $hidden = [
         'username',
+        'user_type',
         'restrict_type',
         'restrict_value',
         'restrict_value_sub',
@@ -13,7 +14,7 @@ class Accounts extends Users
         'updated_at',
     ];
     
-    protected $appends = ['account', 'account_type_desc', 'status_desc'];
+    protected $appends = ['account', 'account_type', 'account_type_desc', 'status_desc'];
     
     public function getAccountAttribute()
     {
@@ -28,6 +29,16 @@ class Accounts extends Users
     public function getStatusDescAttribute()
     {
         return trans('attributes.grades.status.' . $this->status);
+    }
+    
+    /**
+     * 账号类型
+     *
+     * @return string
+     */
+    public function getAccountTypeAttribute()
+    {
+        return $this->user_type;
     }
     
     /**
