@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Helpers\SmsHelper;
 use App\Models\Sms;
+use App\Constants\Dictionary;
 
 class SmsRepository extends Repository
 {
@@ -36,5 +37,28 @@ class SmsRepository extends Repository
         $item->save();
         
         return $result;
+    }
+    
+    /**
+     * 验证验证码
+     *
+     * @param string $mobile
+     * @param int $code
+     * @return boolean
+     */
+    public function verify($mobile, $code)
+    {
+        $end = time();
+        $start = $end - Dictionary::VERIFYCODE_TIME;
+        $end = date('Y-m-d H:i:s', $end);
+        $start = date('Y-m-d H:i:s', $start);
+        
+        $message = $this->model
+                        ->where('mobile', $mobile)
+                        ->whereBetween('created_at', [
+                            $start, $end
+                        ])->value('message');
+        
+        return $message === $code;
     }
 }
