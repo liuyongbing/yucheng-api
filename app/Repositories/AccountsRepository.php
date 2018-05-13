@@ -41,7 +41,7 @@ class AccountsRepository extends Repository
     {
         //验证验证码
         $smsRep = new SmsRepository();
-        $verify = $smsRep->verifycode($params['username'], $params['code']);
+        $verify = $smsRep->verify($params['username'], $params['code']);
         if (true !== $verify)
         {
             return ['验证码错误'];
@@ -114,7 +114,7 @@ class AccountsRepository extends Repository
         }
         
         //教练第一次登录时,绑定第一次登录的电脑MAC地址
-        if (empty($this->model->restrict_value)
+        if (empty($this->model->restrict_value))
         {
             $this->model->restrict_value = $params['mac_token'];
             $this->model->save;
