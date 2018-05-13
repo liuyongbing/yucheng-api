@@ -16,6 +16,7 @@ Route::get('/', function () {
 });
 //用户
 Route::resource('users', 'UsersController');
+Route::resource('accounts', 'AccountsController');
 Route::post('users/login', 'UsersController@login');//登录
 //教练
 Route::resource('trainers', 'TrainersController');

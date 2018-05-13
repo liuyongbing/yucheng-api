@@ -64,6 +64,30 @@
     <body>
         <h1>Yucheng API V1.0.</h1>
         <ol>
+            <li>账号
+                <ul>
+                    <li>
+                        <a href="{{ route('accounts.index') }}" target="_blank">列表</a>
+                        {{ route('accounts.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('accounts.create') }}" target="_blank">新增</a>
+                        {{ route('accounts.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('accounts.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('accounts.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('accounts.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('accounts.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
             <li>班级
                 <ul>
                     <li>
