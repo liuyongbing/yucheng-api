@@ -14,6 +14,8 @@ class SmsRepository extends Repository
     
     public function send($mobile, $params)
     {
+        $result = [];
+        
         $item = $this->model;
         
         $item->mobile = $mobile;
@@ -26,14 +28,20 @@ class SmsRepository extends Repository
         //先记录本地请求
         $item->save();
         
-        $result = SmsHelper::send($mobile, $item->message);
-        if (isset($result['status']) && 'success' == $result['status'])
+        $response = SmsHelper::send($mobile, $item->message);
+        if (isset($response['Code']) && 'OK' == $response['Code'])
         {
             $item->send_status = 1;
+            
+            $result = [];
+        }
+        else
+        {
+            $result = $response['Message'];
         }
         
-        //再记录请求服务商结果
-        $item->send_result = json_encode($result, JSON_UNESCAPED_UNICODE);
+        //记录请求服务商结果
+        $item->send_result = json_encode($response, JSON_UNESCAPED_UNICODE);
         $item->save();
         
         return $result;

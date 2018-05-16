@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "b7904d07d1e1765a0a199aa11d6301a3",
+    "content-hash": "46e6b49495e3d9953ed3c0cc48188b71",
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -406,6 +406,52 @@
                 }
             ],
             "time": "2015-04-20T18:58:01+00:00"
+        },
+        {
+            "name": "jjonline/aliyun-dysms-php-sdk",
+            "version": "v2.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/jjonline/aliyun-dysms-php-sdk.git",
+                "reference": "4155e585dd1c5668fce1afbbd8ac66c9de48cda8"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://files.phpcomposer.com/files/jjonline/aliyun-dysms-php-sdk/4155e585dd1c5668fce1afbbd8ac66c9de48cda8.zip",
+                "reference": "4155e585dd1c5668fce1afbbd8ac66c9de48cda8",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.5.0"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~4.0"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Aliyun\\": "lib/",
+                    "Aliyun\\Test\\": "tests/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "Aliyuncs",
+                    "homepage": "https://www.aliyun.com"
+                }
+            ],
+            "description": "Aliyun SMS SDK for PHP",
+            "homepage": "https://www.aliyun.com/product/sms",
+            "keywords": [
+                "aliyun",
+                "sdk",
+                "sms"
+            ],
+            "time": "2017-08-11T16:26:47+00:00"
         },
         {
             "name": "laravel/framework",

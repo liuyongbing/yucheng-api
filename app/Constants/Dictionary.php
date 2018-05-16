@@ -25,4 +25,12 @@ class Dictionary
     const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
     
     const VERIFYCODE_TIME = 120;//验证码有效期(秒)
+    
+    //短信服务:阿里云
+    const SMS_ALIYUN = [
+        'ACCESS_KEY_ID' => 'LTAIyxMKvzGU1HvX',
+        'ACCESS_KEY_SECRET' => '4tQmdBayLYtWATHeo9gealY9BM96DW',
+        'SIGN_NAME' => '阿里云短信测试专用',
+        'TEMPLATE_CODE' => 'SMS_135005007',
+    ];
 }
