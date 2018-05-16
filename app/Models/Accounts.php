@@ -2,7 +2,7 @@
 
 namespace App\Models;
 
-class Accounts extends Users
+class Accounts extends BasicModel
 {
     protected $hidden = [
         'username',

@@ -81,7 +81,7 @@ class AccountsRepository extends Repository
                 $result = $this->verifyAdmin($params);
                 break;
             //教练
-            case Dictionary::USER_TYPE['TEACHER']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER']:
                 $result = $this->verifyTeacher($params);
                 break;
             default:
@@ -107,7 +107,8 @@ class AccountsRepository extends Repository
      */
     protected function verifyTeacher($params)
     {
-        $result = [];
+        $result = $this->model;
+        
         if (empty($params['mac_token']))
         {
             $result = ['缺少电脑MA地址参数, 请使用指定浏览器登录'];
@@ -117,7 +118,7 @@ class AccountsRepository extends Repository
         if (empty($this->model->restrict_value))
         {
             $this->model->restrict_value = $params['mac_token'];
-            $this->model->save;
+            $this->model->save();
         }
         
         if ($this->model->restrict_value !== $params['mac_token'])
