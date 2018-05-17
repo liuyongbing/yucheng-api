@@ -37,11 +37,11 @@ class AccountsRepository extends Repository
     /**
      * 登录
      */
-    public function login($username, $params = [])
+    public function login($username, $accountType, $params = [])
     {
         //验证验证码
         $smsRep = new SmsRepository();
-        $verify = $smsRep->verify($params['username'], $params['code']);
+        $verify = $smsRep->verify($username, $params['code']);
         if (true !== $verify)
         {
             return ['验证码错误'];
@@ -56,6 +56,27 @@ class AccountsRepository extends Repository
         if (!$this->model->status)
         {
             return ['账号已禁用'];
+        }
+        
+        $accountType = strtoupper($accountType);
+        if (!isset(Dictionary::ACCOUNT_TYPE[$accountType]))
+        {
+            return ['不支持的账号类型'];
+        }
+        
+        if ($this->model->user_type != Dictionary::ACCOUNT_TYPE[$accountType])
+        {
+            if (in_array(Dictionary::ACCOUNT_TYPE[$accountType], [
+                Dictionary::ACCOUNT_TYPE['ADMINISTRATOR'],
+                Dictionary::ACCOUNT_TYPE['EDITOR'],
+            ]))
+            {
+                
+            }
+            else
+            {
+                return ['账号类型不匹配'];
+            }
         }
         
         $result = $this->verify($params);
@@ -111,7 +132,7 @@ class AccountsRepository extends Repository
         
         if (empty($params['mac_token']))
         {
-            $result = ['缺少电脑MA地址参数, 请使用指定浏览器登录'];
+            $result = ['缺少电脑MAC地址参数, 请使用指定浏览器登录'];
         }
         
         //教练第一次登录时,绑定第一次登录的电脑MAC地址

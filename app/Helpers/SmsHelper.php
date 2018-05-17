@@ -20,9 +20,10 @@ class SmsHelper
     
     public static function send($mobile, $message)
     {
-        $data = json_encode(array(  // 短信模板中字段的值
+return ['Code' => 'OK'];
+        $data = json_encode([
             'code' => $message
-        ), JSON_UNESCAPED_UNICODE);
+        ], JSON_UNESCAPED_UNICODE);
         
         $request = new SendSmsRequest();
         

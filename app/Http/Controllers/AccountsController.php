@@ -12,12 +12,12 @@ class AccountsController extends Controller
         $this->repository = new AccountsRepository();
     }
     
-    public function login(Request $request)
+    public function login(Request $request, $accountType)
     {
         $username = $request->input('username', '');
         $params = $request->all();
-        //echo '<pre>';print_r($params);exit();
-        $result = $this->repository->login($username, $params);
+        
+        $result = $this->repository->login($username, $accountType, $params);
         return $this->response($result);
     }
 }
