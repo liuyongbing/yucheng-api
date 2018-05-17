@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Helpers\FileHelper;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
@@ -28,6 +29,7 @@ class AttachmentController extends Controller
                 $bool = Storage::disk('public')->put($filetype . '/' . $filename, file_get_contents($realPath));
                 if ($bool) {
                     $result['filename'] = $filename;
+                    $result['file_url'] = FileHelper::fileUrl($filename, $filetype);
                 }
             }
         }
