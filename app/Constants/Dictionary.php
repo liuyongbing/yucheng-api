@@ -27,5 +27,11 @@ class Dictionary
     
     const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
     
+    const USER_TYPE = [
+        'admin' => 1,//管理员
+        'branch' => 2,//分馆
+        'trainer' => 3,//教练
+    ];
+    
     const VERIFYCODE_TIME = 120;//验证码有效期(秒)
 }
