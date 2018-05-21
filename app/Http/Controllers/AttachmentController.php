@@ -16,7 +16,7 @@ class AttachmentController extends Controller
             // 文件是否上传成功
             if ($file->isValid()) {
                 // 获取文件相关信息
-                //$originalName   = $file->getClientOriginalName(); // 文件原名
+                $originalName   = $file->getClientOriginalName(); // 文件原名
                 $ext            = $file->getClientOriginalExtension(); // 扩展名
                 $realPath       = $file->getRealPath(); //临时文件的绝对路径
                 //$type           = $file->getClientMimeType(); // image/jpeg
@@ -28,6 +28,7 @@ class AttachmentController extends Controller
                 
                 $bool = Storage::disk('public')->put($filetype . '/' . $filename, file_get_contents($realPath));
                 if ($bool) {
+                    $result['title']    = $originalName;
                     $result['filename'] = $filename;
                     $result['file_url'] = FileHelper::fileUrl($filename, $filetype);
                 }

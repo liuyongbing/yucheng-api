@@ -1,6 +1,7 @@
 <?php
 namespace App\Repositories;
 
+use App\Helpers\NewsHelper;
 use App\Models\News;
 
 class NewsRepository extends Repository
@@ -23,7 +24,7 @@ class NewsRepository extends Repository
         $item->category_id  = (int)$data['category_id'];
         $item->branch_id    = (int)$data['branch_id'];
         $item->title        = !empty($data['title']) ? $data['title'] : '';
-        $item->contents     = !empty($data['contents']) ? $data['contents'] : '';
+        $item->contents     = !empty($data['contents']) ? NewsHelper::inputContents($data['contents']) : '';
         $item->summary      = $this->formatSummary($item->contents);
         $item->show_year    = $this->formatShowYear();
         $item->sort         = (int)$data['sort'];
