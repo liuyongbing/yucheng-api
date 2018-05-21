@@ -16,16 +16,16 @@ class NewsHelper
     
     public static function inputContents($contents)
     {
-        $fileServer = env('APP_FILE_SERVER');
-        $fileUrl = $fileServer . '/' . self::$fileType . '/';
-        $contents = str_replace($fileUrl, '', $contents);
+        $contents = str_replace(static::fileUrl(), '', $contents);
         
         return $contents;
     }
     
     public static function outputContents($contents)
     {
-        
+        $pattern = '/src=[\'\"]?([^\'\"]*)[\'\"]?/i';
+        $contents = preg_replace($pattern, 'src="' . static::fileUrl() . '${1}"', $contents);
+        return $contents;
     }
     
     public static function thumb($contents)
@@ -42,5 +42,10 @@ class NewsHelper
         }
         
         return $thumb;
+    }
+    
+    public static function fileUrl()
+    {
+        return FileHelper::fileServer() . '/' . self::$fileType . '/';
     }
 }

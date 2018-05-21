@@ -5,6 +5,11 @@ class FileHelper
 {
     public static function fileUrl($filename, $filetype)
     {
-        return env('APP_FILE_SERVER') . '/' . $filetype . '/' . $filename;
+        return static::fileServer() . '/' . $filetype . '/' . $filename;
+    }
+    
+    public static function fileServer()
+    {
+        return env('APP_FILE_SERVER', '');
     }
 }

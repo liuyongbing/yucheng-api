@@ -35,9 +35,37 @@ class NewsRepository extends Repository
         return $item;
     }
     
+    /**
+     * 修改
+     *
+     * @param int $id
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function update($id, $data = [])
+    {
+        $item = $this->model->find($id);
+        $attributes = $item->getAttributes();
+        
+        $data['contents'] = NewsHelper::inputContents($data['contents']);
+        $data['summary'] = $this->formatSummary($data['contents']);
+        
+        foreach ($data as $key => $value)
+        {
+            if (key_exists($key, $attributes))
+            {
+                $item->$key = $value;
+            }
+        }
+        
+        $item->save();
+        
+        return $item;
+    }
+    
     protected function formatSummary($contens)
     {
-        return 'TODO:从内容中截取概要';
+        return '';
     }
     
     protected function formatShowYear()
