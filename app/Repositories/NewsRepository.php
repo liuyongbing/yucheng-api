@@ -63,6 +63,19 @@ class NewsRepository extends Repository
         return $item;
     }
     
+    public function years()
+    {
+        $data = [];
+        $items = $this->model->select('show_year')->distinct()->get();
+        foreach ($items as $item)
+        {
+            $data[$item->show_year] = $item->show_year;
+        }
+        rsort($data);
+        
+        return $data;
+    }
+    
     protected function formatSummary($contens)
     {
         return '';

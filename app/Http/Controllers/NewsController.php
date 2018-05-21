@@ -10,4 +10,10 @@ class NewsController extends Controller
     {
         $this->repository = new NewsRepository();
     }
+    
+    public function years()
+    {
+        $result = $this->repository->years();
+        return $this->response($result);
+    }
 }
