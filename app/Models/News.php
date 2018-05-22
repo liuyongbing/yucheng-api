@@ -7,7 +7,6 @@ use App\Helpers\NewsHelper;
 class News extends BasicModel
 {
     protected $hidden = [
-        'created_at',
         'updated_at',
         'contents'
     ];
