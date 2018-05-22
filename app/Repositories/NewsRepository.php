@@ -76,6 +76,24 @@ class NewsRepository extends Repository
         return $data;
     }
     
+    public function next($id)
+    {
+        $item = $this->model->where('id', '>', $id)
+                            ->where('status', '=', 1)
+                            ->first();
+        
+        return $item;
+    }
+    
+    public function previous($id)
+    {
+        $item = $this->model->where('id', '<', $id)
+                            ->where('status', '=', 1)
+                            ->first();
+        
+        return $item;
+    }
+    
     protected function formatSummary($contens)
     {
         return '';

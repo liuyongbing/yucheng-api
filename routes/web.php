@@ -27,14 +27,16 @@ Route::resource('categories', 'CategoriesController');
 Route::resource('courses', 'CoursesController');
 //grades:班级
 Route::resource('grades', 'GradesController');
-//teachings:课件
-Route::resource('teachings', 'TeachingsController');
-//sms:短信
-Route::post('/sms/send', 'SmsController@send');
-//trainers:教练
-Route::resource('trainers', 'TrainersController');
 //news:资讯
+Route::get('news/{id}/next', 'NewsController@next');
+Route::get('news/{id}/previous', 'NewsController@previous');
 Route::get('news/years', 'NewsController@years');
 Route::resource('news', 'NewsController');
+//sms:短信
+Route::post('/sms/send', 'SmsController@send');
+//teachings:课件
+Route::resource('teachings', 'TeachingsController');
+//trainers:教练
+Route::resource('trainers', 'TrainersController');
 //users:用户
 Route::resource('users', 'UsersController');

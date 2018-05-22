@@ -53,4 +53,16 @@ class NewsController extends Controller
         $result = $this->repository->years();
         return $this->response($result);
     }
+    
+    public function next($id)
+    {
+        $result = $this->repository->next($id);
+        return $this->response($result);
+    }
+    
+    public function previous($id)
+    {
+        $result = $this->repository->previous($id);
+        return $this->response($result);
+    }
 }
