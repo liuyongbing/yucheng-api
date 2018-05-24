@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Accounts;
 use App\Repositories\AccountsRepository;
 use Illuminate\Http\Request;
 
@@ -18,6 +19,15 @@ class AccountsController extends Controller
         $params = $request->all();
         
         $result = $this->repository->login($username, $accountType, $params);
-        return $this->response($result);
+        if ($result instanceof Accounts)
+        {
+            $status = 'success';
+        }
+        else
+        {
+            $status = 'error';
+        }
+        
+        return $this->response($result, $status);
     }
 }

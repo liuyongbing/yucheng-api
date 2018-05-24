@@ -44,68 +44,70 @@ class AccountsRepository extends Repository
         $verify = $smsRep->verify($username, $params['code']);
         if (true !== $verify)
         {
-            return ['验证码错误'];
+            return [
+                'code' => '100000',
+                'message' => '验证码错误'
+            ];
         }
         
         $this->model = $this->model->where('username', $username)->first();
         if (empty($this->model))
         {
-            return ['手机号错误'];
+            return [
+                'code' => '100000',
+                'message' => '手机号错误'
+            ];
         }
         
         if (!$this->model->status)
         {
-            return ['账号已禁用'];
+            return [
+                'code' => '100000',
+                'message' => '账号已禁用'
+            ];
         }
         
         $accountType = strtoupper($accountType);
         if (!isset(Dictionary::ACCOUNT_TYPE[$accountType]))
         {
-            return ['不支持的账号类型'];
+            return [
+                'code' => '100000',
+                'message' => '不支持的账号类型'
+            ];
         }
         
-        if ($this->model->user_type != Dictionary::ACCOUNT_TYPE[$accountType])
-        {
-            if (in_array(Dictionary::ACCOUNT_TYPE[$accountType], [
-                Dictionary::ACCOUNT_TYPE['ADMINISTRATOR'],
-                Dictionary::ACCOUNT_TYPE['EDITOR'],
-            ]))
-            {
-                
-            }
-            else
-            {
-                return ['账号类型不匹配'];
-            }
-        }
-        
-        $result = $this->verify($params);
+        $result = $this->verify($params, $accountType);
         
         return $result;
     }
     
     /**
      * 账号登录验证
-     * {@inheritDoc}
+     * 
      * @param array $params
      * @return array
      */
-    protected function verify($params)
+    protected function verify($params, $accountType)
     {
         $result = [];
+        
         switch ($this->model->user_type)
         {
             //超级管理员
             case Dictionary::ACCOUNT_TYPE['ADMINISTRATOR']:
             //普通管理员
             case Dictionary::ACCOUNT_TYPE['EDITOR']:
-                $result = $this->verifyAdmin($params);
+                $result = $this->verifyAdmin($params, $accountType);
                 break;
             //教练
             case Dictionary::ACCOUNT_TYPE['TEACHER']:
-                $result = $this->verifyTeacher($params);
+                $result = $this->verifyTeacher($params, $accountType);
                 break;
             default:
+                $result = [
+                    'code' => '100000',
+                    'message' => '暂不支持的用户类型'
+                ];
                 break;
         }
         
@@ -115,9 +117,21 @@ class AccountsRepository extends Repository
     /**
      * 管理员登录
      */
-    protected function verifyAdmin($params)
+    protected function verifyAdmin($params, $accountType)
     {
-        return $this->model;
+        $result = $this->model;
+        if (!in_array(Dictionary::ACCOUNT_TYPE[$accountType], [
+            Dictionary::ACCOUNT_TYPE['ADMINISTRATOR'],
+            Dictionary::ACCOUNT_TYPE['EDITOR'],
+        ]))
+        {
+            $result = [
+                'code' => '100000',
+                'message' => '账号类型不匹配'
+            ];
+        }
+        
+        return $result;
     }
     
     /**
@@ -126,13 +140,24 @@ class AccountsRepository extends Repository
      * @param array $params
      * @return array
      */
-    protected function verifyTeacher($params)
+    protected function verifyTeacher($params, $accountType)
     {
         $result = $this->model;
         
+        if ($this->model->user_type != Dictionary::ACCOUNT_TYPE[$accountType])
+        {
+            return [
+                'code' => '100000',
+                'message' => '账号类型不匹配'
+            ];
+        }
+        
         if (empty($params['mac_token']))
         {
-            $result = ['缺少电脑MAC地址参数, 请使用指定浏览器登录'];
+            return [
+                'code' => '100000',
+                'message' => '缺少电脑MAC地址参数, 请使用指定浏览器登录'
+            ];
         }
         
         //教练第一次登录时,绑定第一次登录的电脑MAC地址
@@ -144,7 +169,10 @@ class AccountsRepository extends Repository
         
         if ($this->model->restrict_value !== $params['mac_token'])
         {
-            $result = ['不允许此电脑登录'];
+            $result = [
+                'code' => '100000',
+                'message' => '不允许此电脑登录'
+            ];
         }
         
         return $result;

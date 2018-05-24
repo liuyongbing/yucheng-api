@@ -99,13 +99,13 @@ class Controller extends BaseController
         return $this->response($result);
     }
     
-    protected function response($result)
+    protected function response($result, $status = 'success')
     {
         return [
-            'status'        => 'success',
-            'error_code'    => 0,
-            'error_message' => '',
-            'result'        => $result
+            'status'    => $status,
+            'code'      => isset($result['code']) ? $result['code'] : 0,
+            'message'   => isset($result['message']) ? $result['message'] : '',
+            'result'    => $result
         ];
     }
 }
