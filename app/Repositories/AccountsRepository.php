@@ -55,7 +55,7 @@ class AccountsRepository extends Repository
         {
             return [
                 'code' => '100000',
-                'message' => '手机号错误'
+                'message' => '账号未开通'
             ];
         }
         
