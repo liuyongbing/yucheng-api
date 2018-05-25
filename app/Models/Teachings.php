@@ -40,7 +40,7 @@ class Teachings extends BasicModel
     
     public function course()
     {
-        $model = new Grades();
+        $model = new Courses();
         if (!empty($this->course_id)) {
             $model = $model->find($this->course_id);
         }

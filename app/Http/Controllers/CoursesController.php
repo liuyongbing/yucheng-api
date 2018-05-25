@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Constants\Dictionary;
 use App\Repositories\CoursesRepository;
 use Illuminate\Http\Request;
-use App\Constants\Dictionary;
 
 class CoursesController extends Controller
 {
