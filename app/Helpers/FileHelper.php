@@ -5,7 +5,12 @@ class FileHelper
 {
     public static function fileUrl($filename, $filetype)
     {
-        return static::fileServer() . '/' . $filetype . '/' . $filename;
+        $fileUrl = '';
+        if (!empty($filename))
+        {
+            $fileUrl = static::fileServer() . '/' . $filetype . '/' . $filename;
+        }
+        return $fileUrl;
     }
     
     public static function fileServer()
