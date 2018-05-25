@@ -44,7 +44,7 @@ class Repository
      * @param array $params
      * @return array
      */
-    public function list($conditions, $offset = 0, $limit = 10, $order = '')
+    public function list($conditions, $offset = 0, $limit = 10, $order = [])
     {
         $query = $this->model->where($conditions);
         
@@ -52,9 +52,19 @@ class Repository
         
         if (!empty($order)) 
         {
-            $query = $query->orderBy($order);
+            if (is_array($order))
+            {
+                foreach ($order as $column => $type)
+                {
+                    $query = $query->orderBy($column, $type);
+                }
+            }
+            else
+            {
+                $query = $query->orderBy($order);
+            }
         }
-            
+        
         $items = $query->skip($offset)->take($limit)->get();
         
         return [
