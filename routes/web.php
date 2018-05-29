@@ -17,6 +17,8 @@ Route::get('/', function () {
 //accounts:账号
 Route::resource('accounts', 'AccountsController');
 Route::post('accounts/{accountType}/login', 'AccountsController@login');//登录
+//apply:加盟申请
+Route::resource('apply', 'ApplyController');
 //attachment:附件上传:{filetype}是以文件用途来区分保存目录
 Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload');
 //branches:分馆
