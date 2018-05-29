@@ -22,7 +22,7 @@ class NewsRepository extends Repository
         $item = $this->model;
         
         $item->category_id  = (int)$data['category_id'];
-        $item->branch_id    = (int)$data['branch_id'];
+        $item->branch_id    = isset($data['branch_id']) ? (int)$data['branch_id'] : 0;
         $item->title        = !empty($data['title']) ? $data['title'] : '';
         $item->contents     = !empty($data['contents']) ? NewsHelper::inputContents($data['contents']) : '';
         $item->summary      = $this->formatSummary($item->contents);
