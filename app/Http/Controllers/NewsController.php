@@ -23,6 +23,7 @@ class NewsController extends Controller
     {
         $year = $request->input('year', '');
         $categoryId = $request->input('category_id', '');
+        $status = $request->input('status', '');
         $page = $request->input('page', 1);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
         $offset = (int)($page-1) * $size;
@@ -37,6 +38,10 @@ class NewsController extends Controller
         if (!empty($categoryId))
         {
             $params['category_id'] = $categoryId;
+        }
+        if (!empty($status))
+        {
+            $params['status'] = $status;
         }
         
         $result = $this->repository->list($params, $offset, $size, $order);
