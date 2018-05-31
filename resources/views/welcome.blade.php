@@ -139,82 +139,7 @@
                 </ul>
             </li>
             
-            <li>班级
-                <ul>
-                    <li>
-                        <a href="{{ route('grades.index') }}" target="_blank">列表</a>
-                        {{ route('grades.index') }}
-                        (GET)
-                    </li>
-                    <li>
-                        <a href="{{ route('grades.create') }}" target="_blank">新增</a>
-                        {{ route('grades.store') }}
-                        (POST)
-                    </li>
-                    <li>
-                        <a href="{{ route('grades.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('grades.update', ['id' => 1]) }}
-                        (PUT)
-                    </li>
-                    <li>
-                        <a href="{{ route('grades.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('grades.show', ['id' => 1]) }}
-                        (GET)
-                    </li>
-                </ul>
-            </li>
-            
-            <li>课程
-                <ul>
-                    <li>
-                        <a href="{{ route('courses.index') }}" target="_blank">列表</a>
-                        {{ route('courses.index') }}
-                        (GET)
-                    </li>
-                    <li>
-                        <a href="{{ route('courses.create') }}" target="_blank">新增</a>
-                        {{ route('courses.store') }}
-                        (POST)
-                    </li>
-                    <li>
-                        <a href="{{ route('courses.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('courses.update', ['id' => 1]) }}
-                        (PUT)
-                    </li>
-                    <li>
-                        <a href="{{ route('courses.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('courses.show', ['id' => 1]) }}
-                        (GET)
-                    </li>
-                </ul>
-            </li>
-            
-            <li>课时
-                <ul>
-                    <li>
-                        <a href="{{ route('teachings.index') }}" target="_blank">列表</a>
-                        {{ route('teachings.index') }}
-                        (GET)
-                    </li>
-                    <li>
-                        <a href="{{ route('teachings.create') }}" target="_blank">新增</a>
-                        {{ route('teachings.store') }}
-                        (POST)
-                    </li>
-                    <li>
-                        <a href="{{ route('teachings.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('teachings.update', ['id' => 1]) }}
-                        (PUT)
-                    </li>
-                    <li>
-                        <a href="{{ route('teachings.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('teachings.show', ['id' => 1]) }}
-                        (GET)
-                    </li>
-                </ul>
-            </li>
-            
-            <li>分馆
+            <li>Branches:分馆
                 <ul>
                     <li>
                         <a href="{{ route('branches.index') }}" target="_blank">列表</a>
@@ -239,32 +164,7 @@
                 </ul>
             </li>
             
-            <li>教练
-                <ul>
-                    <li>
-                        <a href="{{ route('trainers.index') }}" target="_blank">列表</a>
-                        {{ route('trainers.index') }}
-                        (GET)
-                    </li>
-                    <li>
-                        <a href="{{ route('trainers.create') }}" target="_blank">新增</a>
-                        {{ route('trainers.store') }}
-                        (POST)
-                    </li>
-                    <li>
-                        <a href="{{ route('trainers.edit', ['id' => 1]) }}" target="_blank">修改</a>
-                        {{ route('trainers.update', ['id' => 1]) }}
-                        (PUT)
-                    </li>
-                    <li>
-                        <a href="{{ route('trainers.show', ['id' => 1]) }}" target="_blank">详情</a>
-                        {{ route('trainers.show', ['id' => 1]) }}
-                        (GET)
-                    </li>
-                </ul>
-            </li>
-            
-            <li>分类
+            <li>Categories:分类
                 <ul>
                     <li>
                         <a href="{{ route('categories.index') }}" target="_blank">列表</a>
@@ -289,7 +189,57 @@
                 </ul>
             </li>
             
-            <li>资讯
+            <li>Courses:课程
+                <ul>
+                    <li>
+                        <a href="{{ route('courses.index') }}" target="_blank">列表</a>
+                        {{ route('courses.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.create') }}" target="_blank">新增</a>
+                        {{ route('courses.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('courses.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('courses.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('courses.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>Grades:班级
+                <ul>
+                    <li>
+                        <a href="{{ route('grades.index') }}" target="_blank">列表</a>
+                        {{ route('grades.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.create') }}" target="_blank">新增</a>
+                        {{ route('grades.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('grades.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('grades.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('grades.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>News:资讯
                 <ul>
                     <li>
                         <a href="{{ route('news.index') }}" target="_blank">列表</a>
@@ -314,7 +264,67 @@
                 </ul>
             </li>
             
-            <li>登录
+            <li>Position:Banner显示位
+                <ul>
+                    <li>
+                        <a href="{{ route('position.index') }}" target="_blank">列表</a>
+                        {{ route('position.index') }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>Teachings:课时
+                <ul>
+                    <li>
+                        <a href="{{ route('teachings.index') }}" target="_blank">列表</a>
+                        {{ route('teachings.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.create') }}" target="_blank">新增</a>
+                        {{ route('teachings.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('teachings.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('teachings.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('teachings.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>Trainers:教练
+                <ul>
+                    <li>
+                        <a href="{{ route('trainers.index') }}" target="_blank">列表</a>
+                        {{ route('trainers.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('trainers.create') }}" target="_blank">新增</a>
+                        {{ route('trainers.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('trainers.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('trainers.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('trainers.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('trainers.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <li>Users:用户
                 <ul>
                     <li>
                         <a href="{{ route('users.index') }}" target="_blank">列表</a>

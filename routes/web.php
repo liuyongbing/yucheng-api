@@ -36,6 +36,8 @@ Route::get('news/{id}/next', 'NewsController@next');
 Route::get('news/{id}/previous', 'NewsController@previous');
 Route::get('news/years', 'NewsController@years');
 Route::resource('news', 'NewsController');
+//position:Banner显示位
+Route::resource('position', 'PositionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
 //teachings:课件
