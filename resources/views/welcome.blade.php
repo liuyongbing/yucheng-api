@@ -88,6 +88,7 @@
                     </li>
                 </ul>
             </li>
+            
             <li>Apply(加盟申请)
                 <ul>
                     <li>
@@ -112,6 +113,32 @@
                     </li>
                 </ul>
             </li>
+            
+            <li>Banner:头图
+                <ul>
+                    <li>
+                        <a href="{{ route('banner.index') }}" target="_blank">列表</a>
+                        {{ route('apply.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('banner.create') }}" target="_blank">新增</a>
+                        {{ route('apply.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('banner.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('apply.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('banner.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('apply.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
             <li>班级
                 <ul>
                     <li>
