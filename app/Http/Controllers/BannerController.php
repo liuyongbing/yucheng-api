@@ -21,6 +21,7 @@ class BannerController extends Controller
      */
     public function index(Request $request)
     {
+        $positionId = $request->input('position_id', '');
         $status = $request->input('status', '');
         $page = $request->input('page', 1);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
@@ -29,6 +30,10 @@ class BannerController extends Controller
         $order = $request->input('order', '');
         
         $params = [];
+        if (!empty($positionId))
+        {
+            $params['position_id'] = $positionId;
+        }
         if (!empty($status))
         {
             $params['status'] = $status;
