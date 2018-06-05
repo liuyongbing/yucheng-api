@@ -26,6 +26,7 @@ class AccountsRepository extends Repository
         $item = $this->model;
         
         $item->username = $data['username'];
+        $item->name = $data['name'];
         $item->user_type = $data['user_type'];
         $item->status = 1;
         
