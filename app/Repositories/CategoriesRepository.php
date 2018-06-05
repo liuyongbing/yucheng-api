@@ -34,4 +34,24 @@ class CategoriesRepository extends Repository
             'list' => $data
         ];
     }
+    
+    /**
+     * 新增
+     *
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function store($data)
+    {
+        $item = $this->model;
+        
+        $item->title        = !empty($data['title']) ? $data['title'] : '';
+        $item->parent_id    = isset($data['parent_id']) ? (int)$data['parent_id'] : 0;
+        $item->sort         = isset($data['sort']) ? (int)$data['sort'] : 100;
+        $item->status       = 1;
+        
+        $item->save();
+        
+        return $item;
+    }
 }
