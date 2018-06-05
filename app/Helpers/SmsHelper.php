@@ -20,6 +20,7 @@ class SmsHelper
     
     public static function send($mobile, $message)
     {
+return ['Code' => 'OK'];
         $data = json_encode([
             'code' => $message
         ], JSON_UNESCAPED_UNICODE);
