@@ -41,6 +41,11 @@ class Dictionary
         'TEMPLATE_CODE' => 'SMS_135005007',
     ];
     
+    const TEAM_TYPES = [
+        '1' => '管理团队',
+        '2' => '教练团队',
+    ];
+    
     const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
     
     const USER_TYPE = [

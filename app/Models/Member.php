@@ -7,7 +7,34 @@ use App\Helpers\FileHelper;
 
 class Member extends BasicModel
 {
-    protected $appends = ['status_desc', 'image_url'];
+    protected $appends = [
+        'brand',
+        'team',
+        'image_url',
+        'status_desc',
+    ];
+    
+    /**
+     * 品牌
+     *
+     * @return string
+     */
+    public function getBrandAttribute()
+    {
+        $brand = Dictionary::BRAND;
+        return isset($brand[$this->brand_id]) ? $brand[$this->brand_id] : '';
+    }
+    
+    /**
+     * 团队
+     *
+     * @return string
+     */
+    public function getTeamAttribute()
+    {
+        $team = Dictionary::TEAM_TYPES;
+        return isset($team[$this->team_type]) ? $team[$this->team_type] : '';
+    }
     
     /**
      * 图片:完整Url
