@@ -26,7 +26,7 @@ class NewsRepository extends Repository
         $item->title        = !empty($data['title']) ? $data['title'] : '';
         $item->contents     = !empty($data['contents']) ? NewsHelper::inputContents($data['contents']) : '';
         $item->summary      = $this->formatSummary($item->contents);
-        $item->show_year    = $this->formatShowYear();
+        $item->show_year    = !empty($data['show_year']) ? $data['show_year'] : date('Y');
         $item->sort         = (int)$data['sort'];
         $item->status       = 1;
         
