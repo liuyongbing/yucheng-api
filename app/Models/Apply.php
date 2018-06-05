@@ -11,16 +11,6 @@ class Apply extends BasicModel
     protected $appends = ['brand', 'budget', 'status_desc'];
     
     /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute()
-    {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    /**
      * 品牌:文本
      *
      * @return string

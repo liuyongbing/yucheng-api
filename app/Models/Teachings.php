@@ -16,24 +16,6 @@ class Teachings extends BasicModel
     ];
     
     /**
-     * 图片:完整Url
-     *
-     * @return string
-     */
-    public function getImageUrlAttribute() {
-        return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['COURSEWARE']);
-    }
-    
-    /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute() {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    /**
      * 班级:文本
      *
      * @return string

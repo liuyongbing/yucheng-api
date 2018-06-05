@@ -23,16 +23,6 @@ class Users extends BasicModel
     }
     
     /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute()
-    {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    /**
      * 用户信息
      *
      * @return string

@@ -22,16 +22,6 @@ class Accounts extends BasicModel
     }
     
     /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute()
-    {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    /**
      * 账号类型
      *
      * @return string

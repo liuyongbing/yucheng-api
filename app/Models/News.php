@@ -29,16 +29,6 @@ class News extends BasicModel
     }
     
     /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute()
-    {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    /**
      * 内容: 处理图片地址
      * 
      * @return string
