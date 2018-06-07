@@ -21,6 +21,8 @@ Route::post('accounts/{accountType}/login', 'AccountsController@login');//登录
 Route::resource('apply', 'ApplyController');
 //attachment:附件上传:{filetype}是以文件用途来区分保存目录
 Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload');
+//Banner:头图
+Route::resource('banner', 'BannerController');
 //branches:分馆
 Route::resource('branches', 'BranchesController');
 //categories:分类
@@ -36,6 +38,8 @@ Route::get('news/{id}/next', 'NewsController@next');
 Route::get('news/{id}/previous', 'NewsController@previous');
 Route::get('news/years', 'NewsController@years');
 Route::resource('news', 'NewsController');
+//position:Banner显示位
+Route::resource('position', 'PositionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
 //teachings:课件

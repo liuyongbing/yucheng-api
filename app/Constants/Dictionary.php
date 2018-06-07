@@ -2,8 +2,12 @@
 
 namespace App\Constants;
 
+use App\Constants\Traits\Position;
+
 class Dictionary
 {
+    use Position;//Banner位
+    
     const ACCOUNT_TYPE = [
         'ADMINISTRATOR' => 1,//超给级管理员
         'EDITOR' => 2,//普通管理员
