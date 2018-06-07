@@ -137,6 +137,31 @@
                 </ul>
             </li>
             
+            <li>Member:团队成员
+                <ul>
+                    <li>
+                        <a href="{{ route('members.index') }}" target="_blank">列表</a>
+                        {{ route('members.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('members.create') }}" target="_blank">新增</a>
+                        {{ route('members.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('members.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('members.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('members.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('members.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
             <li>课程
                 <ul>
                     <li>

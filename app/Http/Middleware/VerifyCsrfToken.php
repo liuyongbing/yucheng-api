@@ -18,6 +18,7 @@ class VerifyCsrfToken extends Middleware
         'categories*',
         'courses*',
         'grades*',
+        'members*',
         'news*',
         'sms*',
         'teachings*',
