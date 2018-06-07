@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Categories;
+use App\Models\News;
 
 class CategoriesRepository extends Repository
 {
@@ -53,5 +54,32 @@ class CategoriesRepository extends Repository
         $item->save();
         
         return $item;
+    }
+    
+    /**
+     * 修改
+     *
+     * @param int $id
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function update($id, $data = [])
+    {
+        if (isset($data['status']) && 0 == $data['status'])
+        {
+            $newsCount = News::where([
+                'category_id' => $id,
+                'status' => 1
+            ])->count();
+            if (0 < (int)$newsCount)
+            {
+                return [
+                    'code' => '100000',
+                    'message' => '此分类下存在有效新闻, 不允许设为无效.'
+                ];
+            }
+        }
+        
+        return parent::update($id, $data);
     }
 }

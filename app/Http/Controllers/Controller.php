@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Constants\Dictionary;
+use App\Models\BasicModel;
 use App\Repositories\Repository;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Foundation\Bus\DispatchesJobs;
@@ -96,7 +97,16 @@ class Controller extends BaseController
         $data = $request->input();
         $result = $this->repository->update($id, $data);
         
-        return $this->response($result);
+        if ($result instanceof BasicModel)
+        {
+            $status = 'success';
+        }
+        else
+        {
+            $status = 'error';
+        }
+        
+        return $this->response($result, $status);
     }
     
     protected function response($result, $status = 'success')
