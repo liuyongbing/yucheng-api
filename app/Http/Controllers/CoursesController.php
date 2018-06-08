@@ -22,6 +22,7 @@ class CoursesController extends Controller
     public function index(Request $request)
     {
         $gradeId = $request->input('grade_id', 0);
+        $status = $request->input('status', 0);
         $page = $request->input('page', 1);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
         $offset = (int)($page-1) * $size;
@@ -31,6 +32,10 @@ class CoursesController extends Controller
         $params = [
             'grade_id' => $gradeId
         ];
+        if (!empty($status))
+        {
+            $params['status'] = $status;
+        }
         
         $result = $this->repository->list($params, $offset, $size, $order);
         return $this->response($result);
