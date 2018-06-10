@@ -3,38 +3,34 @@
 namespace App\Models;
 
 use App\Constants\Dictionary;
-use App\Helpers\FileHelper;
+use App\Helpers\SectionHelper;
 
 class Section extends BasicModel
 {
-    protected $appends = ['status_desc'];
+    protected $hidden = [
+        'contents',
+        'created_at',
+        'updated_at',
+    ];
     
-    /**
-     * 图片:完整Url
-     *
-     * @return string
-     */
-    public function getImageUrlAttribute()
-    {
-        return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['WEBSITE']);
-    }
+    protected $appends = ['content', 'page', 'status_desc'];
     
-    /**
-     * 状态:文本
-     *
-     * @return string
-     */
-    public function getStatusDescAttribute()
+    public function getPageAttribute()
     {
-        return trans('attributes.grades.status.' . $this->status);
-    }
-    
-    public function getPositionAttribute()
-    {
-        $positions = Dictionary::$positions;
+        $pages = Dictionary::$pages;
         
-        return isset($positions[$this->position_id])
-                    ? trans('positions.' . $positions[$this->position_id])
+        return isset($pages[$this->page_id])
+                    ? trans('pages.' . $pages[$this->page_id])
                     : '';
+    }
+    
+    /**
+     * 内容: 处理图片地址
+     *
+     * @return string
+     */
+    public function getContentAttribute()
+    {
+        return SectionHelper::outputContents($this->contents);
     }
 }

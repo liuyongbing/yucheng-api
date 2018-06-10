@@ -3,10 +3,12 @@
 namespace App\Constants;
 
 use App\Constants\Traits\Position;
+use App\Constants\Traits\Page;
 
 class Dictionary
 {
     use Position;//Banner位
+    use Page;
     
     const ACCOUNT_TYPE = [
         'ADMINISTRATOR' => 1,//超给级管理员
