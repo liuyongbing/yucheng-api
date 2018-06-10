@@ -40,6 +40,8 @@ Route::get('news/years', 'NewsController@years');
 Route::resource('news', 'NewsController');
 //position:Banner显示位
 Route::resource('position', 'PositionController');
+//Section:网页版块
+Route::resource('sections', 'SectionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
 //teachings:课件

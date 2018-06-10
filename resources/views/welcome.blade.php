@@ -299,6 +299,31 @@
                 </ul>
             </li>
             
+            <li>Section:网页截面
+                <ul>
+                    <li>
+                        <a href="{{ route('sections.index') }}" target="_blank">列表</a>
+                        {{ route('sections.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.create') }}" target="_blank">新增</a>
+                        {{ route('sections.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('sections.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('sections.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('sections.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
             <li>Teachings:课时
                 <ul>
                     <li>
