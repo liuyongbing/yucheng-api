@@ -22,11 +22,11 @@ class NewsRepository extends Repository
         $item = $this->model;
         
         $item->category_id  = (int)$data['category_id'];
-        $item->branch_id    = isset($data['branch_id']) ? (int)$data['branch_id'] : 0;
+        $item->published_at = !empty($data['published_at']) ? $data['published_at'] : date('Y-m-d');
         $item->title        = !empty($data['title']) ? $data['title'] : '';
         $item->contents     = !empty($data['contents']) ? NewsHelper::inputContents($data['contents']) : '';
         $item->summary      = $this->formatSummary($item->contents);
-        $item->show_year    = !empty($data['show_year']) ? $data['show_year'] : date('Y');
+        $item->show_year    = $this->formatShowYear($item->published_at);
         $item->sort         = (int)$data['sort'];
         $item->status       = 1;
         
@@ -47,8 +47,9 @@ class NewsRepository extends Repository
         $item = $this->model->find($id);
         $attributes = $item->getAttributes();
         
-        $data['contents'] = NewsHelper::inputContents($data['contents']);
-        $data['summary'] = $this->formatSummary($data['contents']);
+        $data['contents']   = NewsHelper::inputContents($data['contents']);
+        $data['summary']    = $this->formatSummary($data['contents']);
+        $data['show_year']  = $this->formatShowYear($data['published_at']);
         
         foreach ($data as $key => $value)
         {
@@ -99,8 +100,8 @@ class NewsRepository extends Repository
         return '';
     }
     
-    protected function formatShowYear()
+    protected function formatShowYear($publishedAt)
     {
-        return date('Y');
+        return date('Y', strtotime($publishedAt));
     }
 }
