@@ -83,6 +83,8 @@ class Repository
     {
         $query = $this->model->where($conditions);
         
+        $count = $query->count();
+        
         if (!empty($order))
         {
             if (is_array($order))
@@ -100,7 +102,10 @@ class Repository
         
         $items = $query->get();
         
-        return $items;
+        return [
+            'total' => $count,
+            'list' => $items
+        ];
     }
     
     /**
