@@ -43,6 +43,7 @@ Route::resource('position', 'PositionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
 //teachings:课件
+Route::get('teachings/all', 'TeachingsController@all');
 Route::resource('teachings', 'TeachingsController');
 //trainers:教练
 Route::resource('trainers', 'TrainersController');

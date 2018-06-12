@@ -74,6 +74,36 @@ class Repository
     }
     
     /**
+     * All
+     *
+     * @param array $params
+     * @return array
+     */
+    public function all($conditions, $order = [])
+    {
+        $query = $this->model->where($conditions);
+        
+        if (!empty($order))
+        {
+            if (is_array($order))
+            {
+                foreach ($order as $column => $type)
+                {
+                    $query = $query->orderBy($column, $type);
+                }
+            }
+            else
+            {
+                $query = $query->orderBy($order);
+            }
+        }
+        
+        $items = $query->get();
+        
+        return $items;
+    }
+    
+    /**
      * 新增
      *
      * @param array $data

@@ -42,6 +42,20 @@ class Controller extends BaseController
     }
     
     /**
+     * all
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function all(Request $request)
+    {
+        $order = $request->input('order', '');
+        
+        $result = $this->repository->all([], $order);
+        return $this->response($result);
+    }
+    
+    /**
      * 列表
      *
      * @param Request $request
