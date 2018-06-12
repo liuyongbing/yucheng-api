@@ -1,9 +1,10 @@
 <?php
 namespace App\Repositories;
 
-use App\Helpers\SmsHelper;
-use App\Models\Sms;
 use App\Constants\Dictionary;
+use App\Helpers\SmsHelper;
+use App\Models\Accounts;
+use App\Models\Sms;
 
 class SmsRepository extends Repository
 {
@@ -28,21 +29,58 @@ class SmsRepository extends Repository
         //先记录本地请求
         $item->save();
         
-        $response = SmsHelper::send($mobile, $item->message);
-        if (isset($response['Code']) && 'OK' == $response['Code'])
+        $checkResult = $this->checkAccount($mobile);
+        if (true === $checkResult)
         {
-            $item->send_status = 1;
-            
-            $result = [];
+            $response = SmsHelper::send($mobile, $item->message);
+            if (isset($response['Code']) && 'OK' == $response['Code'])
+            {
+                $item->send_status = 1;
+                $result = ['message' => 'OK'];
+            }
+            else
+            {
+                switch ($response['Code'])
+                {
+                    case 'isv.BUSINESS_LIMIT_CONTROL':
+                        $result = ['message' => '获取太频繁'];
+                        break;
+                    default:
+                        $result = ['message' => $response['Message']];
+                        break;
+                }
+            }
+            //记录请求服务商结果
+            $item->send_result = json_encode($response, JSON_UNESCAPED_UNICODE);
+            $item->save();
         }
         else
         {
-            $result = $response['Message'];
+            $result = $checkResult;
         }
         
-        //记录请求服务商结果
-        $item->send_result = json_encode($response, JSON_UNESCAPED_UNICODE);
-        $item->save();
+        return $result;
+    }
+    
+    /**
+     * 检测账号有效性
+     * 
+     * @param string $mobile
+     * @return boolean|string[]
+     */
+    public function checkAccount($mobile)
+    {
+        $result = true;
+        
+        $account = Accounts::where('username', $mobile)->first();
+        if (is_null($account))
+        {
+            $result = ['message' => '账号未开通'];
+        }
+        else if (1 != $account->status)
+        {
+            $result = ['message' => '账号已禁用'];
+        }
         
         return $result;
     }

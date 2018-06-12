@@ -39,10 +39,8 @@ class Dictionary
     
     //短信服务:阿里云
     const SMS_ALIYUN = [
-        'ACCESS_KEY_ID' => 'LTAIyxMKvzGU1HvX',
-        'ACCESS_KEY_SECRET' => '4tQmdBayLYtWATHeo9gealY9BM96DW',
-        'SIGN_NAME' => '阿里云短信测试专用',
-        'TEMPLATE_CODE' => 'SMS_135005007',
+        'SIGN_NAME' => '宜昌翼教教育科技有限公司',
+        'TEMPLATE_CODE' => 'SMS_136050092',
     ];
     
     const TEAM_TYPES = [

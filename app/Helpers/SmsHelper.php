@@ -52,9 +52,9 @@ class SmsHelper
         $domain = "dysmsapi.aliyuncs.com";
         
         // TODO 此处需要替换成开发者自己的AK (https://ak-console.aliyun.com/)
-        $accessKeyId = Dictionary::SMS_ALIYUN['ACCESS_KEY_ID']; // AccessKeyId
+        $accessKeyId = env('ACCESS_KEY_ID'); // AccessKeyId
         
-        $accessKeySecret = Dictionary::SMS_ALIYUN['ACCESS_KEY_SECRET']; // AccessKeySecret
+        $accessKeySecret = env('ACCESS_KEY_SECRET'); // AccessKeySecret
         
         // 暂时不支持多Region
         $region = "cn-hangzhou";
