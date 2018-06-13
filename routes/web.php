@@ -32,6 +32,7 @@ Route::resource('courses', 'CoursesController');
 //grades:班级
 Route::resource('grades', 'GradesController');
 //Member:团队成员
+Route::get('members/all', 'MemberController@all');
 Route::resource('members', 'MemberController');
 //news:资讯
 Route::get('news/{id}/next', 'NewsController@next');

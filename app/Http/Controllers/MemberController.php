@@ -47,4 +47,36 @@ class MemberController extends Controller
         $result = $this->repository->list($params, $offset, $size, $order);
         return $this->response($result);
     }
+    
+    /**
+     * all
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function all(Request $request)
+    {
+        $brandId = $request->input('brand_id', '');
+        $teamType = $request->input('team_type', '');
+        $status = $request->input('status', '');
+        
+        $order = $request->input('order', '');
+        
+        $params = [];
+        if (!empty($brandId))
+        {
+            $params['brand_id'] = $brandId;
+        }
+        if (!empty($teamType))
+        {
+            $params['team_type'] = $teamType;
+        }
+        if (!empty($status))
+        {
+            $params['status'] = $status;
+        }
+        
+        $result = $this->repository->all($params, $order);
+        return $this->response($result);
+    }
 }
