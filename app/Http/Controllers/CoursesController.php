@@ -23,9 +23,8 @@ class CoursesController extends Controller
     {
         $gradeId = $request->input('grade_id', 0);
         $status = $request->input('status', 0);
-        $page = $request->input('page', 1);
+        $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
-        $offset = (int)($page-1) * $size;
         
         $order = $request->input('order', '');
         

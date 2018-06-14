@@ -35,9 +35,8 @@ class TeachingsController extends Controller
             $params['class_number'] = $classNumber;
         }
         
-        $page = $request->input('page', 1);
+        $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
-        $offset = (int)($page-1) * $size;
         
         $order = $request->input('order', '');
         

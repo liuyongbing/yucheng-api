@@ -21,9 +21,8 @@ class UsersController extends Controller
      */
     public function index(Request $request)
     {
-        $page = $request->input('page', 1);
+        $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
-        $offset = (int)($page-1) * $size;
         
         $params = [
             'user_type' => $this->repository->userType
@@ -37,7 +36,7 @@ class UsersController extends Controller
     {
         $username = $request->input('username', '');
         $params = $request->all();
-//echo '<pre>';print_r($params);exit();
+        
         $result = $this->repository->login($username, $params);
         return $this->response($result);
     }
