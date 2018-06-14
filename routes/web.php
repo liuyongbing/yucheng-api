@@ -30,6 +30,7 @@ Route::resource('branches', 'BranchesController');
 Route::get('categories/all', 'CategoriesController@all');
 Route::resource('categories', 'CategoriesController');
 //courses:课程
+Route::get('courses/all', 'CoursesController@all');
 Route::resource('courses', 'CoursesController');
 //grades:班级
 Route::resource('grades', 'GradesController');

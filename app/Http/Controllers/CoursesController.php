@@ -40,4 +40,29 @@ class CoursesController extends Controller
         $result = $this->repository->list($params, $offset, $size, $order);
         return $this->response($result);
     }
+    
+    /**
+     * all
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function all(Request $request)
+    {
+        $gradeId = $request->input('grade_id', 0);
+        $status = $request->input('status', 0);
+        
+        $order = $request->input('order', '');
+        
+        $params = [
+            'grade_id' => $gradeId
+        ];
+        if (!empty($status))
+        {
+            $params['status'] = $status;
+        }
+        
+        $result = $this->repository->all($params, $order);
+        return $this->response($result);
+    }
 }
