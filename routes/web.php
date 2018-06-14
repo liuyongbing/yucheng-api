@@ -22,10 +22,12 @@ Route::resource('apply', 'ApplyController');
 //attachment:附件上传:{filetype}是以文件用途来区分保存目录
 Route::post('/attachment/upload/{filetype}', 'AttachmentController@upload');
 //Banner:头图
+Route::get('banner/all', 'BannerController@all');
 Route::resource('banner', 'BannerController');
 //branches:分馆
 Route::resource('branches', 'BranchesController');
 //categories:分类
+Route::get('categories/all', 'CategoriesController@all');
 Route::resource('categories', 'CategoriesController');
 //courses:课程
 Route::resource('courses', 'CoursesController');

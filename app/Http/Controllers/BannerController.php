@@ -42,4 +42,30 @@ class BannerController extends Controller
         $result = $this->repository->list($params, $offset, $size, $order);
         return $this->response($result);
     }
+    
+    /**
+     * all
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function all(Request $request)
+    {
+        $positionId = $request->input('position_id', '');
+        $status = $request->input('status', '');
+        
+        $params = [];
+        if (!empty($positionId))
+        {
+            $params['position_id'] = $positionId;
+        }
+        if (!empty($status))
+        {
+            $params['status'] = $status;
+        }
+        $order = $request->input('order', '');
+        
+        $result = $this->repository->all($params, $order);
+        return $this->response($result);
+    }
 }
