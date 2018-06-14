@@ -36,4 +36,26 @@ class CategoriesController extends Controller
         $result = $this->repository->list($params, $offset, $size, $order);
         return $this->response($result);
     }
+    
+    /**
+     * all
+     *
+     * @param Request $request
+     * @return array
+     */
+    public function all(Request $request)
+    {
+        $status = $request->input('status', '');
+        
+        $params = [];
+        if (!empty($status))
+        {
+            $params['status'] = $status;
+        }
+        
+        $order = $request->input('order', '');
+        
+        $result = $this->repository->all($params, $order);
+        return $this->response($result);
+    }
 }
