@@ -45,7 +45,7 @@ class Dictionary
     
     const TEAM_TYPES = [
         '1' => '管理团队',
-        '2' => '教练团队',
+        '2' => '教师团队',
     ];
     
     const USER_PROFILE_KEY_FOR_LOGIN = 'mobile';
