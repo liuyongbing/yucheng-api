@@ -50,14 +50,21 @@ class SmsRepository extends Repository
                         break;
                 }
             }
-            //记录请求服务商结果
-            $item->send_result = json_encode($response, JSON_UNESCAPED_UNICODE);
-            $item->save();
         }
         else
         {
             $result = $checkResult;
         }
+        
+        if (isset($response))
+        {
+            $item->send_result = json_encode($response, JSON_UNESCAPED_UNICODE);
+        }
+        else
+        {
+            $item->send_result = json_encode($result, JSON_UNESCAPED_UNICODE);
+        }
+        $item->save();
         
         return $result;
     }
