@@ -130,8 +130,8 @@ class Controller extends BaseController
      */
     public function destroy($id)
     {
-        $result = $this->repository->delete($id);
-        return $this->response($result);
+        $result = $this->repository->destroy($id);
+        return $this->response(true === $result ? ['message' => 'OK'] : '');
     }
     
     protected function response($result, $status = 'success')

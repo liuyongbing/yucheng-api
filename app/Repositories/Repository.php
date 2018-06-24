@@ -158,7 +158,7 @@ class Repository
      *
      * @param int $id
      */
-    public function delete($id)
+    public function destroy($id)
     {
         $item = $this->model->find($id);
         
