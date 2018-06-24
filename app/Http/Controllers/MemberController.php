@@ -23,6 +23,7 @@ class MemberController extends Controller
     {
         $brandId = $request->input('brand_id', '');
         $teamType = $request->input('team_type', '');
+        $username = $request->input('username', '');
         $status = $request->input('status', '');
         $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
@@ -38,7 +39,11 @@ class MemberController extends Controller
         {
             $params['team_type'] = $teamType;
         }
-        if (!empty($status))
+        if (!empty($username))
+        {
+            $params['username'] = $username;
+        }
+        if (is_numeric($status))
         {
             $params['status'] = $status;
         }
