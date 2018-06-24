@@ -122,6 +122,18 @@ class Controller extends BaseController
         return $this->response($result, $status);
     }
     
+    /**
+     * 删除
+     *
+     * @param int $id
+     * @return array
+     */
+    public function destroy($id)
+    {
+        $result = $this->repository->delete($id);
+        return $this->response($result);
+    }
+    
     protected function response($result, $status = 'success')
     {
         return [

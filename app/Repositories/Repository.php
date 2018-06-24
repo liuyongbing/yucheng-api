@@ -152,4 +152,19 @@ class Repository
         
         return $item;
     }
+    
+    /**
+     * 删除
+     *
+     * @param int $id
+     */
+    public function delete($id)
+    {
+        $item = $this->model->find($id);
+        
+        $item->status = -1;
+        $item->save();
+        
+        return true;
+    }
 }
