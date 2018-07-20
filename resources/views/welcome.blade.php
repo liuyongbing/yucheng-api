@@ -214,6 +214,31 @@
                 </ul>
             </li>
             
+            <li>Coursewares:课件
+                <ul>
+                    <li>
+                        <a href="{{ route('coursewares.index') }}" target="_blank">列表</a>
+                        {{ route('coursewares.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('coursewares.create') }}" target="_blank">新增</a>
+                        {{ route('coursewares.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('coursewares.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('coursewares.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('coursewares.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('coursewares.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
             <li>Grades:班级
                 <ul>
                     <li>

@@ -32,6 +32,9 @@ Route::resource('categories', 'CategoriesController');
 //courses:课程
 Route::get('courses/all', 'CoursesController@all');
 Route::resource('courses', 'CoursesController');
+//coursewares:课件
+Route::get('coursewares/all', 'CoursewaresController@all');
+Route::resource('coursewares', 'CoursewaresController');
 //grades:班级
 Route::resource('grades', 'GradesController');
 //Member:团队成员
