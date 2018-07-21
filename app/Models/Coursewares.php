@@ -11,7 +11,9 @@ class Coursewares extends BasicModel
     protected $appends = [
         'content',
         'course_name',
-        'image_url',
+        'file_music_url',
+        'file_ppt_url',
+        'file_video_url',
         'status_desc',
     ];
     
@@ -43,5 +45,35 @@ class Coursewares extends BasicModel
     public function getContentAttribute()
     {
         return TeachingsHelper::outputContents($this->summary);
+    }
+    
+    /**
+     * 课件PPT:完整Url
+     *
+     * @return string
+     */
+    public function getFilePptUrlAttribute()
+    {
+        return FileHelper::fileUrl($this->file_ppt, Dictionary::FILE_TYPE['COURSEWARE']);
+    }
+    
+    /**
+     * 课件音频:完整Url
+     *
+     * @return string
+     */
+    public function getFileMusicUrlAttribute()
+    {
+        return FileHelper::fileUrl($this->file_music, Dictionary::FILE_TYPE['COURSEWARE']);
+    }
+    
+    /**
+     * 课件视频:完整Url
+     *
+     * @return string
+     */
+    public function getFileVideoUrlAttribute()
+    {
+        return FileHelper::fileUrl($this->file_video, Dictionary::FILE_TYPE['COURSEWARE']);
     }
 }
