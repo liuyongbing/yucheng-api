@@ -21,12 +21,10 @@ class CoursewaresRepository extends Repository
     {
         $item = $this->model;
         
-        $item->course_id = (int)$data['course_id'];
-        $item->title = !empty($data['title']) ? $data['title'] : '';
-        $item->summary = !empty($data['summary']) ? TeachingsHelper::inputContents($data['summary']) : '';
-        $item->image = !empty($data['image']) ? $data['image'] : '';
-        $item->display_type = !empty($data['display_type']) ? (int)$data['display_type'] : 1;
-        $item->sort = (int)$data['sort'];
+        $item->course_id    = (int)$data['course_id'];
+        $item->file_ppt     = !empty($data['file_ppt'])     ? $data['file_ppt']     : '';
+        $item->file_music   = !empty($data['file_music'])   ? $data['file_music']   : '';
+        $item->file_video   = !empty($data['file_video'])   ? $data['file_video']   : '';
         $item->class_number = !empty($data['class_number']) ? (int)$data['class_number'] : 1;
         $item->status = 1;
         
