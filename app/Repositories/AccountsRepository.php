@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Constants\Dictionary;
 use App\Models\Accounts;
+use App\Models\Member;
 
 /**
  * 账号 repository

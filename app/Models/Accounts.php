@@ -2,6 +2,8 @@
 
 namespace App\Models;
 
+use App\Constants\Dictionary;
+
 class Accounts extends BasicModel
 {
     protected $hidden = [
@@ -14,7 +16,13 @@ class Accounts extends BasicModel
         'updated_at',
     ];
     
-    protected $appends = ['account', 'account_type', 'account_type_desc', 'status_desc'];
+    protected $appends = [
+        'account',
+        'account_type',
+        'account_type_desc',
+        'brand_id',
+        'status_desc'
+    ];
     
     public function getAccountAttribute()
     {
@@ -39,5 +47,22 @@ class Accounts extends BasicModel
     public function getAccountTypeDescAttribute()
     {
         return trans('attributes.accounts.user_type.' . $this->user_type);
+    }
+    
+    public function getBrandIdAttribute()
+    {
+        $brandId = 0;
+        
+        if (Dictionary::ACCOUNT_TYPE['TEACHER'] == $this->user_type)
+        {
+            //教练需要返回其所属品牌, 用于教练登录教学系统时, 自动识别其教学课件
+            $member = Member::where('mobile', $this->username)->first();
+            if (!empty($member))
+            {
+                $brandId = $member->brand_id;
+            }
+        }
+        
+        return $brandId;
     }
 }
