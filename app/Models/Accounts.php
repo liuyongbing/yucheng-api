@@ -53,14 +53,26 @@ class Accounts extends BasicModel
     {
         $brandId = 0;
         
-        if (Dictionary::ACCOUNT_TYPE['TEACHER'] == $this->user_type)
+        switch ($this->user_type)
         {
-            //教练需要返回其所属品牌, 用于教练登录教学系统时, 自动识别其教学课件
-            $member = Member::where('mobile', $this->username)->first();
-            if (!empty($member))
-            {
-                $brandId = $member->brand_id;
-            }
+            case 31:
+                $brandId = 1;
+                break;
+            case 32:
+                $brandId = 2;
+                break;
+            case 33:
+                $brandId = 3;
+                break;
+            case 34:
+                $brandId = 4;
+                break;
+            case 35:
+                $brandId = 5;
+                break;
+            default:
+                $brandId = 0;
+                break;
         }
         
         return $brandId;
