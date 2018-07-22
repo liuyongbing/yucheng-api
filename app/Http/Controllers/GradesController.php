@@ -21,13 +21,17 @@ class GradesController extends Controller
      */
     public function index(Request $request)
     {
+        $brandId = $request->input('brand_id', 0);
+        
         $status = $request->input('status', '');
         $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
         
         $order = $request->input('order', '');
         
-        $params = [];
+        $params = [
+            'brand_id' => $brandId
+        ];
         if (!empty($status))
         {
             $params['status'] = $status;
