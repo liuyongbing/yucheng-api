@@ -55,19 +55,20 @@ class Accounts extends BasicModel
         
         switch ($this->user_type)
         {
-            case 31:
+            case Dictionary::ACCOUNT_TYPE['TEACHER']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_TAEKWONDO']:
                 $brandId = 1;
                 break;
-            case 32:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_POCKETCAT']:
                 $brandId = 2;
                 break;
-            case 33:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_TOWN']:
                 $brandId = 3;
                 break;
-            case 34:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_SKATING']:
                 $brandId = 4;
                 break;
-            case 35:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_BASKETBALL']:
                 $brandId = 5;
                 break;
             default:

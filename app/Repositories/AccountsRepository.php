@@ -103,6 +103,11 @@ class AccountsRepository extends Repository
                 break;
             //教练
             case Dictionary::ACCOUNT_TYPE['TEACHER']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_TAEKWONDO']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_POCKETCAT']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_TOWN']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_SKATING']:
+            case Dictionary::ACCOUNT_TYPE['TEACHER_BASKETBALL']:
                 $result = $this->verifyTeacher($params, $accountType);
                 break;
             default:
@@ -146,7 +151,14 @@ class AccountsRepository extends Repository
     {
         $result = $this->model;
         
-        if ($this->model->user_type != Dictionary::ACCOUNT_TYPE[$accountType])
+        if (!in_array($this->model->user_type, [
+                Dictionary::ACCOUNT_TYPE['TEACHER'],
+                Dictionary::ACCOUNT_TYPE['TEACHER_TAEKWONDO'],
+                Dictionary::ACCOUNT_TYPE['TEACHER_POCKETCAT'],
+                Dictionary::ACCOUNT_TYPE['TEACHER_TOWN'],
+                Dictionary::ACCOUNT_TYPE['TEACHER_SKATING'],
+                Dictionary::ACCOUNT_TYPE['TEACHER_BASKETBALL'],
+            ]))
         {
             return [
                 'code' => '100000',
