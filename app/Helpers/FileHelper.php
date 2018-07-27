@@ -8,7 +8,14 @@ class FileHelper
         $fileUrl = '';
         if (!empty($filename))
         {
-            $fileUrl = static::fileServer() . '/' . $filetype . '/' . $filename;
+            if (preg_match('/^kejian/U', $fileppt, $matchItems))
+            {
+                $fileUrl = static::fileServer() . '/' . $filename;
+            }
+            else
+            {
+                $fileUrl = static::fileServer() . '/' . $filetype . '/' . $filename;
+            }
         }
         return $fileUrl;
     }
