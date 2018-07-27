@@ -1,7 +1,6 @@
 <?php
 namespace App\Repositories;
 
-use App\Helpers\TeachingsHelper;
 use App\Models\Coursewares;
 
 class CoursewaresRepository extends Repository
@@ -22,7 +21,7 @@ class CoursewaresRepository extends Repository
         $item = $this->model;
         
         $item->course_id    = (int)$data['course_id'];
-        $item->file_ppt     = !empty($data['file_ppt'])     ? $data['file_ppt']     : '';
+        $item->file_ppt     = $this->formatFilePpt($data);
         $item->file_music   = !empty($data['file_music'])   ? $data['file_music']   : '';
         $item->file_video   = !empty($data['file_video'])   ? $data['file_video']   : '';
         $item->class_number = !empty($data['class_number']) ? (int)$data['class_number'] : 1;
@@ -42,7 +41,7 @@ class CoursewaresRepository extends Repository
      */
     public function update($id, $data = [])
     {
-        $data['summary'] = !empty($data['summary']) ? TeachingsHelper::inputContents($data['summary']) : '';
+        $data['file_ppt'] = $this->formatFilePpt($data);
         
         return parent::update($id, $data);
     }
@@ -115,5 +114,40 @@ class CoursewaresRepository extends Repository
                 'total' => $count,
                 'list' => $items
         ];
+    }
+    
+    protected function formatFilePpt($data, $filetype = 'courseware')
+    {
+        $filename = '';
+        
+        if (!empty($data['upload_ppt_filename']))
+        {
+            $file = env('FTP_FILE_FOLDER')  . $filetype . '/' . $data['upload_ppt_filename'];
+            if (file_exists($file))
+            {
+                $filename = $data['upload_ppt_filename'];
+                /* $types = explode('.', $file);
+                 $ext = end($types);
+                 // 上传文件
+                 $filehash = md5_file($file);
+                 $dirPrefix = substr($filehash, 0, 2) . '/' . substr($filehash, 2, 2) . '/';
+                 $filename = $dirPrefix . $filehash . '.' . $ext;
+                 
+                 $pathname = env('STORAGE_FILE_FOLDER') . $filetype . '/' . $dirPrefix;
+                 if (!is_dir($pathname))
+                 {
+                 mkdir($pathname, true);
+                 }
+                 $command = "mv $file $pathname/$filehash.$ext";
+                 system($command); */
+                //Storage::disk('public')->put($filetype . '/' . $filename, file_get_contents($file));
+            }
+        }
+        elseif (!empty($data['file_ppt']))
+        {
+            $filename = $data['file_ppt'];
+        }
+        
+        return $filename;
     }
 }
