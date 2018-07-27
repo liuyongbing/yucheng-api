@@ -5,6 +5,7 @@ namespace App\Models;
 use App\Constants\Dictionary;
 use App\Helpers\FileHelper;
 use App\Helpers\TeachingsHelper;
+use Illuminate\Support\Facades\Storage;
 
 class Coursewares extends BasicModel
 {
@@ -89,5 +90,40 @@ class Coursewares extends BasicModel
     public function getFileVideoUrlAttribute()
     {
         return FileHelper::fileUrl($this->file_video, Dictionary::FILE_TYPE['COURSEWARE']);
+    }
+    
+    protected function formatFilePpt($data, $filetype = 'kejian', $brand = 'pocketcat')
+    {
+        $filename = '';
+        
+        if (!empty($data['upload_ppt_filename']))
+        {
+            $file = env('FTP_FILE_FOLDER') . $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
+            if (file_exists($file))
+            {
+                $filename = $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
+                /* $types = explode('.', $file);
+                $ext = end($types);
+                // 上传文件
+                $filehash = md5_file($file);
+                $dirPrefix = substr($filehash, 0, 2) . '/' . substr($filehash, 2, 2) . '/';
+                $filename = $dirPrefix . $filehash . '.' . $ext;
+                
+                $pathname = env('STORAGE_FILE_FOLDER') . $filetype . '/' . $dirPrefix;
+                if (!is_dir($pathname))
+                {
+                    mkdir($pathname, true);
+                }
+                $command = "mv $file $pathname/$filehash.$ext";
+                system($command); */
+                //Storage::disk('public')->put($filetype . '/' . $filename, file_get_contents($file));
+            }
+        }
+        elseif (!empty($data['file_ppt']))
+        {
+            $filename = $data['file_ppt'];
+        }
+        
+        return $filename;
     }
 }
