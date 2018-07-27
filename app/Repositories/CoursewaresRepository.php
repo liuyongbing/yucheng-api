@@ -116,16 +116,16 @@ class CoursewaresRepository extends Repository
         ];
     }
     
-    protected function formatFilePpt($data, $filetype = 'courseware')
+    protected function formatFilePpt($data, $filetype = 'kejian', $brand = 'pocketcat')
     {
         $filename = '';
         
         if (!empty($data['upload_ppt_filename']))
         {
-            $file = env('FTP_FILE_FOLDER')  . $filetype . '/' . $data['upload_ppt_filename'];
+            $file = env('FTP_FILE_FOLDER') . $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
             if (file_exists($file))
             {
-                $filename = $data['upload_ppt_filename'];
+                $filename = $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
                 /* $types = explode('.', $file);
                  $ext = end($types);
                  // 上传文件
