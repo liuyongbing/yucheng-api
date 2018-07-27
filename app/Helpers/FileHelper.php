@@ -8,7 +8,7 @@ class FileHelper
         $fileUrl = '';
         if (!empty($filename))
         {
-            if (preg_match('/^kejian/U', $fileppt, $matchItems))
+            if (preg_match('/^kejian/U', $filename, $matchItems))
             {
                 $fileUrl = static::fileServer() . '/' . $filename;
             }
