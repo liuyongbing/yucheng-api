@@ -20,14 +20,14 @@ class StudentsRepository extends Repository
     {
         $item = $this->model;
         
-        $item->brand_id     = (int)$data['brand_id'];
-        $item->team_type    = (int)$data['team_type'];
-        $item->username     = !empty($data['username']) ? $data['username'] : '';
+        $item->name         = !empty($data['name']) ? $data['name'] : '';
+        $item->gender       = $data['gender'];
+        $item->birthday     = $data['birthday'];
+        $item->id_number    = !empty($data['id_number']) ? $data['id_number'] : '';
+        $item->address      = !empty($data['address']) ? $data['address'] : '';
+        $item->school       = !empty($data['school']) ? $data['school'] : '';
+        $item->linkman      = !empty($data['linkman']) ? $data['linkman'] : '';
         $item->mobile       = !empty($data['mobile']) ? $data['mobile'] : '';
-        $item->titles       = !empty($data['titles']) ? $this->formatTitles($data['titles']) : '';
-        $item->summary      = !empty($data['summary']) ? $data['summary'] : '';
-        $item->image        = !empty($data['image']) ? $data['image'] : '';
-        $item->sort         = (int)$data['sort'];
         $item->status       = 1;
         
         $item->save();

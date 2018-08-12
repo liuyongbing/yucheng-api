@@ -8,22 +8,8 @@ use App\Helpers\FileHelper;
 class Students extends BasicModel
 {
     protected $appends = [
-        'brand',
-        'team',
-        'image_url',
         'status_desc',
     ];
-    
-    /**
-     * 品牌
-     *
-     * @return string
-     */
-    public function getBrandAttribute()
-    {
-        $brand = Dictionary::BRAND;
-        return isset($brand[$this->brand_id]) ? $brand[$this->brand_id] : '';
-    }
     
     /**
      * 团队
