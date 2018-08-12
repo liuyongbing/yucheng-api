@@ -63,7 +63,36 @@
     </head>
     <body>
         <h1>Yucheng API V1.0.</h1>
+        <h3>快速导航
+            <a href="#API_A">A</a>
+            <a href="#API_B">B</a>
+            <a href="#API_C">C</a>
+            <a href="#API_D">D</a>
+            <a href="#API_E">E</a>
+            <a href="#API_F">F</a>
+            <a href="#API_G">G</a>
+            <a href="#API_H">H</a>
+            <a href="#API_I">I</a>
+            <a href="#API_J">J</a>
+            <a href="#API_K">K</a>
+            <a href="#API_L">L</a>
+            <a href="#API_M">M</a>
+            <a href="#API_N">N</a>
+            <a href="#API_O">O</a>
+            <a href="#API_P">P</a>
+            <a href="#API_Q">Q</a>
+            <a href="#API_R">R</a>
+            <a href="#API_S">S</a>
+            <a href="#API_T">T</a>
+            <a href="#API_U">U</a>
+            <a href="#API_V">V</a>
+            <a href="#API_W">W</a>
+            <a href="#API_X">X</a>
+            <a href="#API_Y">Y</a>
+            <a href="#API_Z">Z</a>
+        </h3>
         <ol>
+            <div id="API_A"></div>
             <li>Account(账号)
                 <ul>
                     <li>
@@ -114,6 +143,7 @@
                 </ul>
             </li>
             
+            <div id="API_B"></div>
             <li>Banner:头图
                 <ul>
                     <li>
@@ -164,6 +194,7 @@
                 </ul>
             </li>
             
+            <div id="API_C"></div>
             <li>Categories:分类
                 <ul>
                     <li>
@@ -239,6 +270,7 @@
                 </ul>
             </li>
             
+            <div id="API_G"></div>
             <li>Grades:班级
                 <ul>
                     <li>
@@ -264,6 +296,7 @@
                 </ul>
             </li>
             
+            <div id="API_M"></div>
             <li>Member:团队成员
                 <ul>
                     <li>
@@ -289,6 +322,7 @@
                 </ul>
             </li>
             
+            <div id="API_N"></div>
             <li>News:资讯
                 <ul>
                     <li>
@@ -314,6 +348,7 @@
                 </ul>
             </li>
             
+            <div id="API_P"></div>
             <li>Position:Banner显示位
                 <ul>
                     <li>
@@ -324,6 +359,33 @@
                 </ul>
             </li>
             
+            <div id="API_S"></div>
+            <li>Student:学员
+                <ul>
+                    <li>
+                        <a href="{{ route('students.index') }}" target="_blank">列表</a>
+                        {{ route('students.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('students.create') }}" target="_blank">新增</a>
+                        {{ route('students.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('students.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('students.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('students.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('students.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
+            
+            <div id="API_T"></div>
             <li>Teachings:课时
                 <ul>
                     <li>
@@ -374,6 +436,7 @@
                 </ul>
             </li>
             
+            <div id="API_U"></div>
             <li>Users:用户
                 <ul>
                     <li>
