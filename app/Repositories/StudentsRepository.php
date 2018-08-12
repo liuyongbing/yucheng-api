@@ -32,6 +32,62 @@ class StudentsRepository extends Repository
         
         $item->save();
         
+        if (!empty($data['family_member']))
+        {
+            $result = [];
+            foreach ($data['family_member'] as $relation => $member)
+            {
+                $repository = new StudentFamilyRepository();
+                $member['student_id'] = $item->id;
+                $member['relation'] = $relation;
+                $result[] = $repository->store($member);
+            }
+        }
+        
+        return $item;
+    }
+    
+    /**
+     * 修改
+     *
+     * @param int $id
+     * @param array $data
+     * @return \App\Models\BasicModel
+     */
+    public function update($id, $data = [])
+    {
+        $item = $this->model->find($id);
+        $attributes = $item->getAttributes();
+        
+        foreach ($data as $key => $value)
+        {
+            if (key_exists($key, $attributes))
+            {
+                $item->$key = $value;
+            }
+        }
+        
+        $item->save();
+        
+        if (!empty($data['family_member']))
+        {
+            $result = [];
+            foreach ($data['family_member'] as $relation => $member)
+            {
+                $repository = new StudentFamilyRepository();
+                $member['student_id'] = $item->id;
+                $member['relation'] = $relation;
+                
+                if (!empty($member['id']))
+                {
+                    $repository->update($member['id'], $member);
+                }
+                else 
+                {
+                    $result[] = $repository->store($member);
+                }
+            }
+        }
         return $item;
     }
     

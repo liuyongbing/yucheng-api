@@ -2,34 +2,32 @@
 
 namespace App\Models;
 
-use App\Constants\Dictionary;
-use App\Helpers\FileHelper;
-
 class Students extends BasicModel
 {
     protected $appends = [
+        'family_members',
         'status_desc',
     ];
     
     /**
-     * 团队
+     * 家庭成员
      *
      * @return string
      */
-    public function getTeamAttribute()
+    public function getFamilyMembersAttribute()
     {
-        $team = Dictionary::TEAM_TYPES;
-        return isset($team[$this->team_type]) ? $team[$this->team_type] : '';
-    }
-    
-    /**
-     * 图片:完整Url
-     * 
-     * @return string
-     */
-    public function getImageUrlAttribute()
-    {
-        return FileHelper::fileUrl($this->image, Dictionary::FILE_TYPE['COURSEWARE']);
+        $members = [];
+        
+        $items = StudentFamily::where('student_id', $this->id)->get();
+        if (!empty($items))
+        {
+            foreach ($items as $item)
+            {
+                $members[$item->relation] = $item;
+            }
+        }
+        
+        return $members;
     }
     
     /**
