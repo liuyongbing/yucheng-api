@@ -76,8 +76,8 @@ class CoursewaresRepository extends Repository
         $items = $query->skip($offset)->take($limit)->get();
         
         return [
-                'total' => $count,
-                'list' => $items
+            'total' => $count,
+            'list' => $items,
         ];
     }
     
@@ -111,21 +111,23 @@ class CoursewaresRepository extends Repository
         $items = $query->get();
         
         return [
-                'total' => $count,
-                'list' => $items
+            'total' => $count,
+            'list' => $items
         ];
     }
     
-    protected function formatFilePpt($data, $filetype = 'kejian', $brand = 'pocketcat')
+    protected function formatFilePpt($data, $filetype = 'kejian')
     {
         $filename = '';
         
         if (!empty($data['upload_ppt_filename']))
         {
-            $file = env('FTP_FILE_FOLDER') . $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
+            $folder = $this->formatBrandFolder($data['course_id']);
+            
+            $file = env('FTP_FILE_FOLDER') . $filetype . '/' . $folder. '/' . $data['upload_ppt_filename'];
             if (file_exists($file))
             {
-                $filename = $filetype . '/' . $brand . '/' . $data['upload_ppt_filename'];
+                $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
                 /* $types = explode('.', $file);
                  $ext = end($types);
                  // 上传文件
@@ -149,5 +151,42 @@ class CoursewaresRepository extends Repository
         }
         
         return $filename;
+    }
+    
+    protected function formatBrandFolder($courseId)
+    {
+        $brandId = 0;
+        
+        $repository = new CoursesRepository();
+        $course = $repository->detail($courseId);
+        
+        if (!empty($course))
+        {
+            $brandId = $course->grade->brand_id;
+        }
+        
+        switch ($brandId)
+        {
+            case 1:
+                $folder = 'taekwondo';
+                break;
+            case 2:
+                $folder = 'pocketcat';
+                break;
+            case 3:
+                $folder = 'town';
+                break;
+            /* case 4:
+                $folder = '';
+                break;
+            case 5:
+                $folder = '';
+                break; */
+            default:
+                $folder = 'common';
+                break;
+        }
+        
+        return $folder;
     }
 }
