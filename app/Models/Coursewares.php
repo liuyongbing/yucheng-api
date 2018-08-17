@@ -11,6 +11,7 @@ class Coursewares extends BasicModel
     protected $appends = [
         'content',
         'course_name',
+        'course',
         'file_music_url',
         'file_ppt_url',
         'file_ppt_online_url',
@@ -23,10 +24,21 @@ class Coursewares extends BasicModel
      *
      * @return string
      */
-    public function getCourseNameAttribute() {
+    public function getCourseNameAttribute()
+    {
         $model = $this->course();
         
         return $model->title;
+    }
+    
+    /**
+     * 班级:文本
+     *
+     * @return string
+     */
+    public function getCourseAttribute()
+    {
+        return $this->course();
     }
     
     public function course()
