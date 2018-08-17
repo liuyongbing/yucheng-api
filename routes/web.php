@@ -49,6 +49,8 @@ Route::resource('news', 'NewsController');
 Route::resource('position', 'PositionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
+//student:学员
+Route::resource('students', 'StudentsController');
 //teachings:课件
 Route::get('teachings/all', 'TeachingsController@all');
 Route::resource('teachings', 'TeachingsController');
