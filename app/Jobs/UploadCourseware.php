@@ -37,11 +37,11 @@ class UploadCourseware implements ShouldQueue
     public function handle()
     {
         //ftp://120.55.116.241:9812/doc_100yjy_com
-        $host = env('FTP_HOST', '120.55.116.241');
-        $port = env('FTP_PORT', 9812);
-        $username = env('FTP_USERNAME', '100yjy.com');
-        $password = env('FTP_PASSWORD', 'hjtX8pXUQu');
-        $folder = env('FTP_FOLDER', '/doc_100yjy_com');
+        $host = env('FTP_HOST');
+        $port = env('FTP_PORT');
+        $username = env('FTP_USERNAME');
+        $password = env('FTP_PASSWORD');
+        $folder = env('FTP_FOLDER');
         
         $file = env('FTP_FILE_FOLDER') . $this->coursewareFile;
         $remoteFile = md5_file($file) . '.pptx';
@@ -52,7 +52,7 @@ class UploadCourseware implements ShouldQueue
             ftp_pasv($conn, true);
             
             ftp_chdir($conn, $folder);
-            ftp_put($conn, $remote_file, $file, FTP_BINARY);
+            ftp_put($conn, $remoteFile, $file, FTP_BINARY);
         }
         
         ftp_close($conn);

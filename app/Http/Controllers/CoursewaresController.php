@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Constants\Dictionary;
 use App\Repositories\CoursewaresRepository;
 use Illuminate\Http\Request;
+use App\Jobs\UploadCourseware;
 
 class CoursewaresController extends Controller
 {
@@ -72,5 +73,8 @@ class CoursewaresController extends Controller
         return $this->response($result);
     }
     
-    
+    public function show($id)
+    {
+        $demo = new UploadCourseware('kejian/taekwondo/ftp_put.pptx');
+    }
 }
