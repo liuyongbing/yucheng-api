@@ -2,6 +2,7 @@
 namespace App\Repositories;
 
 use App\Models\Coursewares;
+use App\Jobs\UploadCourseware;
 
 class CoursewaresRepository extends Repository
 {
@@ -128,6 +129,8 @@ class CoursewaresRepository extends Repository
             if (file_exists($file))
             {
                 $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
+                
+                dispatch(new UploadCourseware($folder . '/' . $data['upload_ppt_filename']));
                 /* $types = explode('.', $file);
                  $ext = end($types);
                  // 上传文件
