@@ -130,7 +130,7 @@ class CoursewaresRepository extends Repository
             {
                 $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
                 
-                dispatch(new UploadCourseware($folder . '/' . $data['upload_ppt_filename']));
+                dispatch(new UploadCourseware($filename));
                 /* $types = explode('.', $file);
                  $ext = end($types);
                  // 上传文件
