@@ -1,8 +1,8 @@
 <?php
 namespace App\Repositories;
 
+use App\Events\UploadCoursewareEvent;
 use App\Models\Coursewares;
-use App\Events\UploadCourseware;
 
 class CoursewaresRepository extends Repository
 {
@@ -130,7 +130,7 @@ class CoursewaresRepository extends Repository
             {
                 $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
                 
-                event(new UploadCourseware($filename));
+                event(new UploadCoursewareEvent($filename));
                 /* $types = explode('.', $file);
                  $ext = end($types);
                  // 上传文件
