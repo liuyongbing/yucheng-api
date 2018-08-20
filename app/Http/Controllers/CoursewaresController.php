@@ -72,9 +72,4 @@ class CoursewaresController extends Controller
         $result = $this->repository->all($params, $order);
         return $this->response($result);
     }
-    
-    public function show($id)
-    {
-        $demo = new UploadCourseware('kejian/taekwondo/ftp_put.pptx');
-    }
 }
