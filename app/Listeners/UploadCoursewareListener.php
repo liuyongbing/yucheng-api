@@ -2,11 +2,11 @@
 
 namespace App\Listeners;
 
-use App\Events\UploadCourseware;
+use App\Events\UploadCoursewareEvent;
 
-class UploadCourseware
+class UploadCoursewareListener
 {
-    public function handle(UploadCourseware $event)
+    public function handle(UploadCoursewareEvent $event)
     {
         //ftp://120.55.116.241:9812/doc_100yjy_com
         $host = env('FTP_HOST');

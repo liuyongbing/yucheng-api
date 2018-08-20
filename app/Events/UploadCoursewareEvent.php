@@ -2,7 +2,7 @@
 
 namespace App\Events;
 
-class UploadCourseware
+class UploadCoursewareEvent
 {
     public $coursewareFile;
     
