@@ -3,8 +3,9 @@
 namespace App\Listeners;
 
 use App\Events\UploadCoursewareEvent;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
-class UploadCoursewareListener
+class UploadCoursewareListener implements ShouldQueue
 {
     public function handle(UploadCoursewareEvent $event)
     {
