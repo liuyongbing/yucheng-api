@@ -137,14 +137,11 @@ class CoursewaresRepository extends Repository
                 $dirPrefix = substr($filehash, 0, 2) . '/' . substr($filehash, 2, 2) . '/';
                 $filename = $dirPrefix . $filehash . '.' . $ext;
                 
-                $pathname = env('STORAGE_FILE_FOLDER') . $filetype . '/' . $dirPrefix;
-                if (!is_dir($pathname))
+                $bool = Storage::disk('public')->put('courseware' . '/' . $filename, file_get_contents($file));
+                if ($bool)
                 {
-                    mkdir($pathname, true);
+                    event(new UploadCoursewareEvent($filename));
                 }
-                Storage::disk('public')->put('courseware' . '/' . $filename, file_get_contents($file));
-                
-                event(new UploadCoursewareEvent($filename));
             }
         }
         elseif (!empty($data['file_ppt']))
