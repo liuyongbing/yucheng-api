@@ -3,6 +3,7 @@ namespace App\Repositories;
 
 use App\Events\UploadCoursewareEvent;
 use App\Models\Coursewares;
+use Illuminate\Support\Facades\Storage;
 
 class CoursewaresRepository extends Repository
 {
@@ -129,23 +130,21 @@ class CoursewaresRepository extends Repository
             if (file_exists($file))
             {
                 $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
+                $types = explode('.', $file);
+                $ext = end($types);
+                // 上传文件
+                $filehash = md5_file($file);
+                $dirPrefix = substr($filehash, 0, 2) . '/' . substr($filehash, 2, 2) . '/';
+                $filename = $dirPrefix . $filehash . '.' . $ext;
+                
+                $pathname = env('STORAGE_FILE_FOLDER') . $filetype . '/' . $dirPrefix;
+                if (!is_dir($pathname))
+                {
+                    mkdir($pathname, true);
+                }
+                Storage::disk('public')->put('courseware' . '/' . $filename, file_get_contents($file));
                 
                 event(new UploadCoursewareEvent($filename));
-                /* $types = explode('.', $file);
-                 $ext = end($types);
-                 // 上传文件
-                 $filehash = md5_file($file);
-                 $dirPrefix = substr($filehash, 0, 2) . '/' . substr($filehash, 2, 2) . '/';
-                 $filename = $dirPrefix . $filehash . '.' . $ext;
-                 
-                 $pathname = env('STORAGE_FILE_FOLDER') . $filetype . '/' . $dirPrefix;
-                 if (!is_dir($pathname))
-                 {
-                 mkdir($pathname, true);
-                 }
-                 $command = "mv $file $pathname/$filehash.$ext";
-                 system($command); */
-                //Storage::disk('public')->put($filetype . '/' . $filename, file_get_contents($file));
             }
         }
         elseif (!empty($data['file_ppt']))
