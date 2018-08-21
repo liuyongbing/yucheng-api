@@ -130,7 +130,9 @@ class CoursewaresRepository extends Repository
             if (file_exists($file))
             {
                 $filename = $filetype . '/' . $folder . '/' . $data['upload_ppt_filename'];
-                $types = explode('.', $file);
+                event(new UploadCoursewareEvent($filename));
+                
+                /* $types = explode('.', $file);
                 $ext = end($types);
                 // 上传文件
                 $filehash = md5_file($file);
@@ -141,7 +143,7 @@ class CoursewaresRepository extends Repository
                 if ($bool)
                 {
                     event(new UploadCoursewareEvent($filename));
-                }
+                } */
             }
         }
         elseif (!empty($data['file_ppt']))
