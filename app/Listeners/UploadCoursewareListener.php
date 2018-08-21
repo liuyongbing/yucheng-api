@@ -7,6 +7,8 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 
 class UploadCoursewareListener implements ShouldQueue
 {
+    public $timeout = 3600;
+    
     public function handle(UploadCoursewareEvent $event)
     {
         //ftp://120.55.116.241:9812/doc_100yjy_com
