@@ -19,6 +19,8 @@ class UploadCourseware implements ShouldQueue
 
     public $coursewareFile;
     
+    public $timeout = 1800;
+    
     /**
      * Create a new job instance.
      *
