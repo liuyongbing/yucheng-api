@@ -19,7 +19,10 @@ class UploadCoursewareListener implements ShouldQueue
         $folder = env('FTP_FOLDER');
         
         $file = env('FTP_FILE_FOLDER') . $event->coursewareFile;
-        $remoteFile = md5_file($file) . '.pptx';
+        $filePath = explode($file, '/');
+        
+        //$remoteFile = md5_file($file) . '.pptx';
+        $remoteFile = end($filePath);
         
         $conn = ftp_connect($host, $port);
         if (ftp_login($conn, $username, $password))
