@@ -58,3 +58,5 @@ Route::resource('teachings', 'TeachingsController');
 Route::resource('trainers', 'TrainersController');
 //users:用户
 Route::resource('users', 'UsersController');
+//wechat_oauth:微信授权
+Route::resource('wechat_oauth', 'WechatOauthController');

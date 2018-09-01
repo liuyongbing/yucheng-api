@@ -461,6 +461,32 @@
                     </li>
                 </ul>
             </li>
+                        
+            <div id="API_W"></div>
+            <li>Wechat Oauth:微信授权
+                <ul>
+                    <li>
+                        <a href="{{ route('wechat_oauth.index') }}" target="_blank">列表</a>
+                        {{ route('wechat_oauth.index') }}
+                        (GET)
+                    </li>
+                    <li>
+                        <a href="{{ route('wechat_oauth.create') }}" target="_blank">新增</a>
+                        {{ route('wechat_oauth.store') }}
+                        (POST)
+                    </li>
+                    <li>
+                        <a href="{{ route('wechat_oauth.edit', ['id' => 1]) }}" target="_blank">修改</a>
+                        {{ route('wechat_oauth.update', ['id' => 1]) }}
+                        (PUT)
+                    </li>
+                    <li>
+                        <a href="{{ route('wechat_oauth.show', ['id' => 1]) }}" target="_blank">详情</a>
+                        {{ route('wechat_oauth.show', ['id' => 1]) }}
+                        (GET)
+                    </li>
+                </ul>
+            </li>
         </ol>
     </body>
 </html>
