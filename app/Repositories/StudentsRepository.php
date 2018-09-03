@@ -44,6 +44,16 @@ class StudentsRepository extends Repository
             }
         }
         
+        if (!empty($data['openid']))
+        {
+            $attr = [
+                'openid'     => $data['openid'],
+                'student_id' => $item->id,
+            ];
+            $repository = new WechatStudentsRepository();
+            $repository->store($attr);
+        }
+        
         return $item;
     }
     
