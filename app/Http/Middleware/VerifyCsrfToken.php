@@ -27,5 +27,6 @@ class VerifyCsrfToken extends Middleware
         'teachings*',
         'trainers*',
         'users/login',
+        'wechat_oauth*',
     ];
 }
