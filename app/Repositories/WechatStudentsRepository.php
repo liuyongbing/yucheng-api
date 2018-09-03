@@ -27,4 +27,9 @@ class WechatStudentsRepository extends Repository
         
         return $item;
     }
+    
+    public function showByOpenid($openid)
+    {
+        return $this->model->where(['openid' => $openid])->first();
+    }
 }

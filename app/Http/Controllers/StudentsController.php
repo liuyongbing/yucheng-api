@@ -83,4 +83,16 @@ class StudentsController extends Controller
         $result = $this->repository->all($params, $order);
         return $this->response($result);
     }
+    
+    /**
+     * 根据微信openid获取学生详情
+     * 
+     * @param string $openid
+     * @return array
+     */
+    public function showByOpenid($openid)
+    {
+        $result = $this->repository->showByOpenid($openid);
+        return $this->response($result);
+    }
 }

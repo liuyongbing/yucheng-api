@@ -382,6 +382,11 @@
                         {{ route('students.show', ['id' => 1]) }}
                         (GET)
                     </li>
+                    <li>
+                        <a href="{{ route('students.showByOpenid', ['openid' => 'okDww1X0P6Kb9qTtnX_ArAeoBtrI']) }}" target="_blank">详情</a>
+                        {{ route('students.showByOpenid', ['openid' => 'okDww1X0P6Kb9qTtnX_ArAeoBtrI']) }}
+                        (GET)
+                    </li>
                 </ul>
             </li>
             

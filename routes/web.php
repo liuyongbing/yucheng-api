@@ -50,6 +50,7 @@ Route::resource('position', 'PositionController');
 //sms:短信
 Route::post('/sms/send', 'SmsController@send');
 //student:学员
+Route::get('students/wechat/{openid}', 'StudentsController@showByOpenid')->name('students.showByOpenid');
 Route::resource('students', 'StudentsController');
 //teachings:课件
 Route::get('teachings/all', 'TeachingsController@all');

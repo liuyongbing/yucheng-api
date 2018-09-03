@@ -149,14 +149,18 @@ class StudentsRepository extends Repository
         ];
     }
     
-    public function formatTitles($titles)
+    public function showByOpenid($openid)
     {
-        $titlesArr = explode('|', $titles);
-        foreach ($titlesArr as $key => $title)
+        $student = [];
+        
+        $repository = new WechatStudentsRepository();
+        $wechat = $repository->showByOpenid($openid);
+        if (!empty($wechat))
         {
-            $titlesArr[$key] = trim($title);
+            $id = $wechat->student_id;
+            $student = $this->detail($id);
         }
         
-        return implode(' | ', $titlesArr);
+        return $student;
     }
 }
