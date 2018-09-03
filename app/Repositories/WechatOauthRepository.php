@@ -20,12 +20,14 @@ class WechatOauthRepository extends Repository
     {
         $item = $this->model;
         
-        $item->openid   = !empty($data['openid']) ? $data['openid'] : '';
-        $item->original = !empty($data['original']) ? $data['original'] : '';
+        $attributes = [
+            'openid' => !empty($data['openid']) ? $data['openid'] : ''
+        ];
+        $values = [
+            'original' => json_encode(!empty($data['original']) ? $data['original'] : [])
+        ];
         
-        $item->save();
-        
-        return $item;
+        return $this->model->firstOrCreate($attributes, $values);
     }
     
     /**
