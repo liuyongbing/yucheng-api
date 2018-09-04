@@ -16,7 +16,7 @@ class CreateWechatOauthTable extends Migration
         Schema::create('wechat_oauth', function (Blueprint $table) {
             $table->increments('id');
             $table->char('openid', 28)->default('');
-            $table->json('original')->nullable();
+            $table->string('original', 1024)->default('');
             $table->dateTime('created_at')->nullable();
             $table->dateTime('updated_at')->nullable();
         });
