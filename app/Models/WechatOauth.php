@@ -23,7 +23,10 @@ class WechatOauth extends BasicModel
         $model = new WechatStudents();
         if (!empty($this->openid)) {
             $model = $model->where(['openid' => $this->openid])->first();
-            $studentId = $model->student_id;
+            if (!empty($model))
+            {
+                $studentId = $model->student_id;
+            }
         }
         
         return $studentId;
