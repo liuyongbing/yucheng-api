@@ -107,6 +107,7 @@ class StudentsController extends Controller
         $mobile     = $request->input('mobile', '');
         $studentId  = $request->input('student_id', '');
         
-        return $this->repository->bindWechat($openid, $studentId, $mobile);
+        $result = $this->repository->bindWechat($openid, $studentId, $mobile);
+        return $this->response($result);
     }
 }

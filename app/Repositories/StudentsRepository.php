@@ -188,7 +188,10 @@ class StudentsRepository extends Repository
         }
         else
         {
-            $result['message'] = '无效的会员卡';
+            $result = [
+                'code' => '100000',
+                'message' => '无效的会员卡'
+            ];
         }
         
         return $result;
