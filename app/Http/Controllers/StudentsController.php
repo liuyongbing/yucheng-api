@@ -95,4 +95,18 @@ class StudentsController extends Controller
         $result = $this->repository->showByOpenid($openid);
         return $this->response($result);
     }
+    
+    /**
+     * 学员绑定微信
+     * 
+     * @param Request $request
+     */
+    public function bindWechat(Request $request)
+    {
+        $openid     = $request->input('openid', '');
+        $mobile     = $request->input('mobile', '');
+        $studentId  = $request->input('student_id', '');
+        
+        return $this->repository->bindWechat($openid, $studentId, $mobile);
+    }
 }

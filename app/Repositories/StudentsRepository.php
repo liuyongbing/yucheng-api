@@ -163,4 +163,34 @@ class StudentsRepository extends Repository
         
         return $student;
     }
+    
+    /**
+     * 学员绑定微信
+     * 
+     * @param string $openid
+     * @param integer $studentId
+     * @param string $mobile
+     * @return string[]|\App\Models\BasicModel
+     */
+    public function bindWechat($openid, $studentId, $mobile)
+    {
+        $result = [];
+        
+        $item = $this->model->find($studentId);
+        if (!empty($item) && $item->mobile == $mobile)
+        {
+            $attr = [
+                'openid'     => $openid,
+                'student_id' => $studentId,
+            ];
+            $repository = new WechatStudentsRepository();
+            $result = $repository->store($attr);
+        }
+        else
+        {
+            $result['message'] = '无效的会员卡';
+        }
+        
+        return $result;
+    }
 }
