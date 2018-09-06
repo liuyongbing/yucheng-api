@@ -18,14 +18,14 @@ class WechatStudentsRepository extends Repository
      */
     public function store($data)
     {
-        $item = $this->model;
+        $attributes = [
+            'openid' => !empty($data['openid']) ? $data['openid'] : ''
+        ];
+        $values = [
+            'student_id' => !empty($data['student_id']) ? $data['student_id'] : 0
+        ];
         
-        $item->openid       = !empty($data['openid']) ? $data['openid'] : '';
-        $item->student_id   = !empty($data['student_id']) ? $data['student_id'] : '';
-        
-        $item->save();
-        
-        return $item;
+        return $this->model->firstOrCreate($attributes, $values);
     }
     
     public function showByOpenid($openid)
