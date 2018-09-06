@@ -109,10 +109,10 @@ class StudentsRepository extends Repository
      */
     public function list($conditions, $offset = 0, $limit = 10, $order = [])
     {
-        if (!empty($conditions['username']))
+        if (!empty($conditions['name']))
         {
-            $query = $this->model->where('username', 'like', '%' . $conditions['username'] . '%');
-            unset($conditions['username']);
+            $query = $this->model->where('name', 'like', '%' . $conditions['name'] . '%');
+            unset($conditions['name']);
         }
         
         if (!isset($query))

@@ -23,7 +23,7 @@ class StudentsController extends Controller
     {
         $brandId = $request->input('brand_id', '');
         $teamType = $request->input('team_type', '');
-        $username = $request->input('username', '');
+        $name = $request->input('name', '');
         $status = $request->input('status', '');
         $offset = $request->input('offset', 0);
         $size = $request->input('size', Dictionary::PAGE_SIZE);
@@ -39,9 +39,9 @@ class StudentsController extends Controller
         {
             $params['team_type'] = $teamType;
         }
-        if (!empty($username))
+        if (!empty($name))
         {
-            $params['username'] = $username;
+            $params['name'] = $name;
         }
         if (is_numeric($status))
         {
