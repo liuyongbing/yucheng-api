@@ -18,6 +18,7 @@ class Students extends BasicModel
     public function getCardNumberAttribute()
     {
         //0011117312
+        //0020000000
         $numLen = 10;
         
         $cardNumber = $this->id;
