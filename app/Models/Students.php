@@ -5,9 +5,32 @@ namespace App\Models;
 class Students extends BasicModel
 {
     protected $appends = [
+        'card_number',
         'family_members',
         'status_desc',
     ];
+    
+    /**
+     * 会员卡号
+     *
+     * @return string
+     */
+    public function getCardNumberAttribute()
+    {
+        //0011117312
+        $numLen = 10;
+        
+        $cardNumber = $this->id;
+        $len = strlen($cardNumber);
+        
+        if ($numLen > $len)
+        {
+            $numPrefix = str_repeat('0', $numLen-$len);
+            $cardNumber = $numPrefix . $cardNumber;
+        }
+        
+        return $cardNumber;
+    }
     
     /**
      * 家庭成员
