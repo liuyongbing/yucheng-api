@@ -80,7 +80,7 @@ class Coursewares extends BasicModel
         //http://ow365.cn/?i=16363&furl=http://file.100yjy.com/demo.pptx
         return env('OFFICE_WEB_SITE', 'http://ow365.cn/') . '?i=' . 
                env('OFFICE_WEB_ID', '16363') . '&' .
-               env('OFFICE_WEB_CACHE', '') . '&furl=' . $this->file_ppt_url;
+               env('OFFICE_WEB_CACHE', '') . '&n=5&furl=' . $this->file_ppt_url;
     }
     
     /**
