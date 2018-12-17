@@ -2,8 +2,8 @@
 namespace App\Repositories;
 
 use App\Events\UploadCoursewareEvent;
+use App\Models\Courses;
 use App\Models\Coursewares;
-use Illuminate\Support\Facades\Storage;
 
 class CoursewaresRepository extends Repository
 {
@@ -56,8 +56,14 @@ class CoursewaresRepository extends Repository
      */
     public function list($conditions, $offset = 0, $limit = 10, $order = [])
     {
-        $query = $this->model->where($conditions)->where('status', '>=', 0);
-        
+        $maxClassNumber = 0;
+        if (!empty($conditions['course_id'])) {
+            $course = Courses::find($conditions['course_id']);
+            $maxClassNumber = (int)$course->class_total;
+        }
+        $query = $this->model->where($conditions)
+                             ->where('status', '>=', 0)
+                             ->where('class_number', '<=', $maxClassNumber);
         $count = $query->count();
         
         if (!empty($order))
