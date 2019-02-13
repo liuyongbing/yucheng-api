@@ -24,8 +24,8 @@ class CoursesRepository extends Repository
         $item->title        = !empty($data['title']) ? $data['title'] : '';
         $item->summary      = !empty($data['summary']) ? $data['summary'] : '';
         $item->image        = !empty($data['image']) ? $data['image'] : '';
-        $item->class_total  = (int)$data['class_total'];
-        $item->sort         = (int)$data['sort'];
+        $item->class_total  = isset($data['class_total']) ? (int)$data['class_total'] : 0;
+        $item->sort         = isset($data['sort']) ? (int)$data['sort'] : 100;
         $item->status       = 1;
         
         $item->save();
